@@ -5,6 +5,7 @@ INSERT INTO ingredients (item_name, type, price)
 	--vodka
 
 	('titos', 'vodka', 5.50),
+	('deep eddys', 'vodka', 6.50),
 	('absolute', 'vodka', 6.50),
 	('stolichnaya', 'vodka', 7.50),
 	('kettle one', 'vodka', 7.50),

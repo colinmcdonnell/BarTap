@@ -70,14 +70,14 @@ INSERT INTO ingredients (item_name, type, price)
 
 	--cordials
 
-	('jagermeister', 'cordials', 7),
-	('tuaca', 'cordials', 7),
-	('rumpleminze', 'cordials', 7),
-	('glodschlager', 'cordials', 7),
-	('midori', 'cordials', 7),
-	('amaretto', 'cordials', 7),
-	('campari', 'cordials', 7),
-	('chambord', 'cordials', 7),
+	('jagermeister', 'cordials', 7.00),
+	('tuaca', 'cordials', 7.00),
+	('rumpleminze', 'cordials', 7.00),
+	('glodschlager', 'cordials', 7.00),
+	('midori', 'cordials', 7.00),
+	('amaretto', 'cordials', 7.00),
+	('campari', 'cordials', 7.00),
+	('chambord', 'cordials', 7.00),
 
 	--beer
 

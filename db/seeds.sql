@@ -1,5 +1,5 @@
 -- Insert 
-INSERT INTO ingredients (item_name, type, price)
+INSERT INTO bev (item_name, type, price)
 	VALUES
 
 	--vodka

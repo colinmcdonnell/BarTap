@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 //--Need to fetch this from the db --//
 var userDetails = {
 	name: "Collin M",

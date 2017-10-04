@@ -7,7 +7,7 @@ export default class DrinksList extends Component {
 		super(props);
 
 		this.state = {
-			drinkList: this.props.
+			drinkList: this.props.drinks
 		};
 
 		this.handleClick = this.handleClick.bind(this);

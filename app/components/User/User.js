@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 //--Need to fetch this from the db --//
 var userDetails = {
-	name: "Collin M",
+	name: "Colin M",
 	image : "https://avatars3.githubusercontent.com/u/25713169?v=4&s=400"
 }
 

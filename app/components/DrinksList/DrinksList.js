@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 export default class DrinksList extends Component {
 	constructor(props) {
 		super(props);
@@ -11,7 +9,6 @@ export default class DrinksList extends Component {
 		};
 
 		this.handleClick = this.handleClick.bind(this);
-		
 	}
 
 	render(){
@@ -27,7 +24,6 @@ export default class DrinksList extends Component {
 			</div>
 			<div className="col-md-1"></div>
 			<div className="col-md-7">
-			
 			</div>
 			</div>
 			</div>

@@ -5,14 +5,21 @@ var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordia
 
 const styles ={ 
 	img: {
-    	width: '100px',
- 		height: '100px',
- 		display: 'block',
- 		borderRadius: '50%',
+		width: '100px',
+		height: '100px',
+		display: 'block',
+		borderRadius: '50%',
 	},
 	button: {
 		width: '150px',
-		height:'50px',
+		height:'60px',
+		
+	},
+	drinksbutton: {
+		width: '100px',
+		height:'100px',
+		margin: "5px",
+		float: 'left'
 	}
 
 };
@@ -48,12 +55,11 @@ export default class Categories extends Component {
 				results : true,
 			});
 		}
-		//-----------------------------------
 	}
 	render(){
 		let list;
 		if(this.state.results){
-				list = <DrinksList drinks={this.state.drinkList} />
+			list = <DrinksList drinks={this.state.drinkList} />
 		}
 		return(<div>
 			<div>
@@ -64,18 +70,15 @@ export default class Categories extends Component {
 				<div><button className="btn btn-default" id={item} style={styles.button} onClick={this.handleClick} >{item}</button></div>
 				))}
 			</div>
-			<div className="col-md-1">
-			</div>
-			<div className="col-md-7">
+			
+			<div className="col-md-8">
 			{this.state.drinkList.map((item) => 
-				<div><button className="btn btn-default" id={item} style={styles.button} >{item}</button></div>
+				<div><button className="btn " id={item} style={styles.drinksbutton} >{item}</button></div>
 				)}
 			</div>
 			</div>
 			</div>
 			</div>
-
-			
-		</div>);
+			</div>);
 	}
 }

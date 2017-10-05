@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from "./components/Main";
-import Categories from "./components/Categories/Categories"
+import List from "./components/List"
 
-ReactDOM.render(<Categories />, document.getElementById("app"));
+var buttonsarray = ["0","1","2","3","4","5","6","7","8","9"];
+
+ReactDOM.render(<List buttons = {buttonsarray} />, document.getElementById("app"));
+
+
 
 

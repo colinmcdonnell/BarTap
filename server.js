@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
+var mysql = require("mysql");
 
 var app = express();
 var PORT = process.env.PORT || 3000; 
@@ -26,7 +27,58 @@ app.use(express.static("public"));
 
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
+  console.log("You are connected to mysql")
 });
 
+var connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "",
+  database: "bev_db"
+});
+
+connection.connect(function(err) {
+  if (err) throw err;
+});
+
+function selectAll(){
+	var queryString = "SELECT * FROM bev";
+
+	connection.query(queryString, function (err, result) {
+    if (err){
+    	throw err;
+    }
+    console.log(result);
+  });
+}
+
+selectAll();
+
+function selectItemType(){
+	var queryString = "SELECT DISTINCT item_type FROM bev";
+
+	connection.query(queryString, function (err, result) {
+    if (err){
+    	throw err;
+    }
+    console.log(result);
+  });
+}
+
+selectItemType();
+
+function selectItemName(){
+	var queryString = "SELECT * FROM bev WHERE item_type = ?";
+
+	connection.query(queryString, function (err, result) {
+    if (err){
+    	throw err;
+    }
+    console.log(result);
+  });
+}
+
+selectItemName();
 
 

@@ -32,9 +32,34 @@ app.listen(PORT, function() {
 
 var connection = mysql.createConnection({
   host: "localhost",
-  port: 3000,
+  port: 3306,
   user: "root",
-  password: "",
+  password: "Sirniloc89",
   database: "bev_db"
 });
+
+connection.connect(function(err) {
+  if (err) throw err;
+});
+
+function selectSomething(){
+	var queryString = "SELECT * FROM bev";
+
+	connection.query(queryString, function (err, result) {
+    if (err){
+    	throw err;
+    }
+    console.log(result);
+  });
+}
+
+selectSomething();
+
+
+
+
+
+
+
+
 

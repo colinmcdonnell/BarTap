@@ -34,7 +34,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "Sirniloc89",
   database: "bev_db"
 });
 
@@ -42,43 +42,53 @@ connection.connect(function(err) {
   if (err) throw err;
 });
 
-function selectAll(){
-	var queryString = "SELECT * FROM bev";
+// function selectAll(){
+// 	var queryString = "SELECT * FROM bev";
 
-	connection.query(queryString, function (err, result) {
-    if (err){
-    	throw err;
-    }
-    console.log(result);
-  });
-}
+// 	connection.query(queryString, function (err, result) {
+//     if (err){
+//     	throw err;
+//     }
+//     console.log(result);
+//   });
+// }
 
-selectAll();
+// selectAll();
 
-function selectItemType(){
-	var queryString = "SELECT DISTINCT item_type FROM bev";
+// function selectItemType(){
+// 	var queryString = "SELECT DISTINCT item_type FROM bev";
 
-	connection.query(queryString, function (err, result) {
-    if (err){
-    	throw err;
-    }
-    console.log(result);
-  });
-}
+// 	connection.query(queryString, function (err, result) {
+//     if (err){
+//     	throw err;
+//     }
+//     console.log(result);
+//   });
+// }
 
-selectItemType();
+// selectItemType();
 
-function selectItemName(){
-	var queryString = "SELECT * FROM bev WHERE item_type = ?";
+// function selectItemName(){
+// 	var queryString = "SELECT * FROM bev WHERE item_type = ?";
 
-	connection.query(queryString, function (err, result) {
-    if (err){
-    	throw err;
-    }
-    console.log(result);
-  });
-}
+// 	connection.query(queryString, function (err, result) {
+//     if (err){
+//     	throw err;
+//     }
+//     console.log(result);
+//   });
+// }
 
-selectItemName();
+// selectItemName();
+
+app.get("/login/:catg?", function(req,res){
+    console.log("it worked");
+    var dbQuery = "SELECT * FROM bev WHERE item_type = ?"
+      connection.query(dbQuery,[req.params.catg], function(err, result) {
+      res.json(result);
+      console.log(result);
+    });
+
+})
 
 

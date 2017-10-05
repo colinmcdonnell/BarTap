@@ -3,6 +3,8 @@ import DrinksList from "../DrinksList/DrinksList";
 import Summary from "../Summary/Summary";
 //--Need to fetch this from the db --//
 
+
+
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
 const styles ={ 
@@ -39,6 +41,18 @@ export default class Categories extends Component {
 		
 	}
 
+	categories0(event) {
+		var thing = event.target.value;
+
+		fetch('/login/' + thing, {
+    	method: 'get',
+    	headers: {
+      	'Accept': 'application/json',
+      	'Content-Type': 'application/json',
+    }
+  })
+}
+
 	handleClick(event) {
 		const category =  event.target.id;
 		let drinks =[];
@@ -67,6 +81,7 @@ export default class Categories extends Component {
 		}
 		return(<div>
 			<div>
+			<button onClick={this.categories0} value='whiskey'>hey</button>
 			<div className="container">
 			<div className="row">
 			<div className="col-md-4">

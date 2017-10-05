@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DrinksList from "../DrinksList/DrinksList";
+import Summary from "../Summary/Summary";
 //--Need to fetch this from the db --//
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
@@ -58,8 +59,10 @@ export default class Categories extends Component {
 	}
 	render(){
 		let list;
+		let ordersummary;
 		if(this.state.results){
 			list = <DrinksList drinks={this.state.drinkList} />
+			ordersummary = <Summary />
 		}
 		return(<div>
 			<div>
@@ -72,9 +75,20 @@ export default class Categories extends Component {
 			</div>
 			
 			<div className="col-md-8">
+			<div className="row">
+			<div className="col-md-12">
 			{this.state.drinkList.map((item) => 
 				<div><button className="btn " id={item} style={styles.drinksbutton} >{item}</button></div>
 				)}
+			</div>
+			</div>
+			<div className="row">
+			<div className="col-md-12">
+				{ordersummary}
+			</div>
+			</div>
+
+			
 			</div>
 			</div>
 			</div>

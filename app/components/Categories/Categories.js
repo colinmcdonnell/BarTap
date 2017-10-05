@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DrinksList from "../DrinksList/DrinksList";
 import Summary from "../Summary/Summary";
 //--Need to fetch this from the db --//
+
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
 const styles ={ 

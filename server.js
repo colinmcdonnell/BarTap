@@ -34,7 +34,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "Sirniloc89",
   database: "bev_db"
 });
 
@@ -42,7 +42,7 @@ connection.connect(function(err) {
   if (err) throw err;
 });
 
-function selectSomething(){
+function selectAll(){
 	var queryString = "SELECT * FROM bev";
 
 	connection.query(queryString, function (err, result) {
@@ -53,13 +53,32 @@ function selectSomething(){
   });
 }
 
-selectSomething();
+selectAll();
 
+function selectItemType(){
+	var queryString = "SELECT DISTINCT item_type FROM bev";
 
+	connection.query(queryString, function (err, result) {
+    if (err){
+    	throw err;
+    }
+    console.log(result);
+  });
+}
 
+selectItemType();
 
+function selectItemName(){
+	var queryString = "SELECT * FROM bev WHERE item_type = ?";
 
+	connection.query(queryString, function (err, result) {
+    if (err){
+    	throw err;
+    }
+    console.log(result);
+  });
+}
 
-
+selectItemName();
 
 

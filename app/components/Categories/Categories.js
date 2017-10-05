@@ -3,7 +3,13 @@ import DrinksList from "../DrinksList/DrinksList";
 import Summary from "../Summary/Summary";
 //--Need to fetch this from the db --//
 
-
+// var categories = React.createClass({
+// 	render : function (){
+// 		return(
+// 			itemType:[]
+// 			)
+// 	}
+// })
 
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
@@ -43,17 +49,17 @@ export default class Categories extends Component {
 		
 	}
 
-	categories0(event) {
-		var thing = event.target.value;
+// 	categories0(event) {
+// 		var thing = event.target.value;
 
-		fetch('/login/' + thing, {
-    	method: 'get',
-    	headers: {
-      	'Accept': 'application/json',
-      	'Content-Type': 'application/json',
-    }
-  })
-}
+// 		fetch('/login/' + thing, {
+//     	method: 'get',
+//     	headers: {
+//       	'Accept': 'application/json',
+//       	'Content-Type': 'application/json',
+//     }
+//   })
+// }
 
 	handleClick(event) {
 		const category =  event.target.id;
@@ -81,16 +87,16 @@ export default class Categories extends Component {
 			list = <DrinksList drinks={this.state.drinkList} />
 			ordersummary = <Summary />
 		}
-<<<<<<< HEAD
-		return(<div>
-			<div>
-			<button onClick={this.categories0} value='whiskey'>hey</button>
-			<div className="container">
-=======
+
+		//return(<div>
+		//	<div>
+		//	<button onClick={this.categories0} value='whiskey'>hey</button>
+		//	<div className="container">)
+
 		return(<div className="leftBar">
 					<div>
 					<div className="container">
->>>>>>> db23af4e997825241c0bee6fb18625175fd4e749
+
 			<div className="row">
 			<div className="col-md-4">
 			{categories.map((item) => (

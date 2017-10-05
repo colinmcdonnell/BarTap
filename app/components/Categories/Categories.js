@@ -11,16 +11,18 @@ const styles ={
 		borderRadius: '50%',
 	},
 	button: {
-		width: '150px',
-		height:'60px',
+		width: '45.75%',
+		height:'75px',
+
 		
 	},
 	drinksbutton: {
 		width: '100px',
 		height:'100px',
 		margin: "5px",
-		float: 'left'
-	}
+		float: "right",
+
+	},
 
 };
 
@@ -61,9 +63,9 @@ export default class Categories extends Component {
 		if(this.state.results){
 			list = <DrinksList drinks={this.state.drinkList} />
 		}
-		return(<div>
-			<div>
-			<div className="container">
+		return(<div className="leftBar">
+					<div>
+					<div className="container">
 			<div className="row">
 			<div className="col-md-4">
 			{categories.map((item) => (

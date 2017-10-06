@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import DrinksList from "../DrinksList/DrinksList";
 import Summary from "../Summary/Summary";
 //--Need to fetch this from the db --//
+
+// var categories = React.createClass({
+// 	render : function (){
+// 		return(
+// 			itemType:[]
+// 			)
+// 	}
+// })
+
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
 const styles ={ 
@@ -12,8 +21,9 @@ const styles ={
 		borderRadius: '50%',
 	},
 	button: {
-		width: '150px',
-		height:'60px',
+		width: '45.75%',
+		height:'75px',
+
 		
 	},
 	drinksbutton: {
@@ -22,6 +32,8 @@ const styles ={
 		margin: "5px",
 		float: 'left'
 	},
+	
+
 };
 
 
@@ -41,6 +53,18 @@ export default class Categories extends Component {
 		this.handleOrderClick = this.handleOrderClick.bind(this);
 		
 	}
+
+// 	categories0(event) {
+// 		var thing = event.target.value;
+
+// 		fetch('/login/' + thing, {
+//     	method: 'get',
+//     	headers: {
+//       	'Accept': 'application/json',
+//       	'Content-Type': 'application/json',
+//     }
+//   })
+// }
 
 	handleClick(event) {
 		const category =  event.target.id;
@@ -91,9 +115,16 @@ export default class Categories extends Component {
 			//list = <DrinksList drinks={this.state.drinkList}  />
 			ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.price}/>
 		}
-		return(<div>
-			<div>
-			<div className="container">
+
+		//return(<div>
+		//	<div>
+		//	<button onClick={this.categories0} value='whiskey'>hey</button>
+		//	<div className="container">)
+
+		return(<div className="leftBar">
+					<div>
+					<div className="container">
+
 			<div className="row">
 			<div className="col-md-4">
 			{categories.map((item) => (

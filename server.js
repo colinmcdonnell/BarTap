@@ -32,9 +32,37 @@ app.listen(PORT, function() {
 
 var connection = mysql.createConnection({
   host: "localhost",
-  port: 3000,
+  port: 3306,
   user: "root",
   password: "",
   database: "bev_db"
 });
+
+connection.connect(function(err) {
+  if (err) throw err;
+});
+
+function selectSomething(){
+  var queryString = "SELECT * FROM bev";
+
+  connection.query(queryString, function (err, result) {
+    if (err){
+      throw err;
+    }
+    console.log(result);
+  });
+}
+
+selectSomething();
+
+
+app.post("/login", function(req,res){
+  console.log(req.body.loginarray);
+  var dbQuery = "SELECT * FROM users WHERE users = ?"
+    connection.query(dbQuery,[req.body.loginarray], function(err, result) {
+      res.json(result);
+      console.log(result);
+    });
+
+})
 

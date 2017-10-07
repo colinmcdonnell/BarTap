@@ -34,7 +34,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "Cricket47",
   database: "bev_db"
 });
 
@@ -56,13 +56,24 @@ function selectSomething(){
 selectSomething();
 
 
-app.post("/login", function(req,res){
-  console.log(req.body.loginarray);
+app.get("/login/:input?", function(req,res){
+  console.log(req.params.input);
   var dbQuery = "SELECT * FROM users WHERE users = ?"
-    connection.query(dbQuery,[req.body.loginarray], function(err, result) {
-      res.json(result);
-      console.log(result);
+
+    connection.query(dbQuery,[req.params.input], function(err, result) {
+      // res.json(result);
+      console.log(result[0].users);
+      if(result){
+        res.json(result);
+      }
+      else{
+        console.log("no user found");   
+      }
+      
+
     });
+  
+
 
 })
 

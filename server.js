@@ -42,53 +42,19 @@ connection.connect(function(err) {
   if (err) throw err;
 });
 
-function selectAll(){
-	var queryString = "SELECT * FROM bev";
+app.get("/getdrinks/:catg?", function(req,res){
+	console.log(req.body.drinks);
+	var dbQuery = "SELECT * FROM bev WHERE item_type = ?"
+	  connection.query(dbQuery,[req.params.catg], function(err, result) {
+	  	console.log(result);
+	  	res.json(result);
 
-	connection.query(queryString, function (err, result) {
-    if (err){
-    	throw err;
-    }
-    console.log(result);
-  });
-}
+	  	// for (var i = 0; i < result.length; i++) {
+	  	// 	console.log(result[i].item_name);
+	  	// };
 
-selectAll();
 
-function selectItemType(){
-	var queryString = "SELECT DISTINCT item_type FROM bev";
-
-	connection.query(queryString, function (err, result) {
-    if (err){
-    	throw err;
-    }
-    console.log(result);
-  });
-}
-
-selectItemType();
-
-function selectItemName(){
-	var queryString = "SELECT * FROM bev WHERE item_type = 'whiskey'";
-
-	connection.query(queryString, function (err, result) {
-    if (err){
-    	throw err;
-    }
-    console.log(result);
-  });
-}
-
-selectItemName();
-
-// app.get("/login/:catg?", function(req,res){
-//     console.log("it worked");
-//     var dbQuery = "SELECT * FROM bev WHERE item_type = ?"
-//       connection.query(dbQuery,[req.params.catg], function(err, result) {
-//       res.json(result);
-//       console.log(result);
-//     });
-
-// })
+	  })
+	});
 
 

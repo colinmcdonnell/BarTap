@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import DrinksList from "../DrinksList/DrinksList";
 import Summary from "../Summary/Summary";
+import axios from 'axios';
 //--Need to fetch this from the db --//
-
-// var categories = React.createClass({
-// 	render : function (){
-// 		return(
-// 			itemType:[]
-// 			)
-// 	}
-// })
 
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
@@ -42,6 +35,8 @@ export default class Categories extends Component {
 
 		this.state = {
 			drinkList: [],
+			drinkPrice: [],
+			drinkUnit: [],
 			results: false
 		};
 
@@ -49,51 +44,60 @@ export default class Categories extends Component {
 		
 	}
 
-// 	categories0(event) {
-// 		var thing = event.target.value;
-
-// 		fetch('/login/' + thing, {
-//     	method: 'get',
-//     	headers: {
-//       	'Accept': 'application/json',
-//       	'Content-Type': 'application/json',
-//     }
-//   })
-// }
-
 	handleClick(event) {
-		const category =  event.target.id;
-		let drinks =[];
-		//---Need to chage this to fetch from db ---/
-		if(category == "vodka"){
-			drinks=["titos", "monopolowa", "deep eddy", "absolute", "stolichnaya", "kettle one", "grey goose", "belvedere"];
-			this.setState({
-				drinkList : drinks,
-				results : true,
-			});
-		}
-		else {
-			drinks = ["a", "b", "c"];
-			this.setState({
-				drinkList : drinks,
-				results : true,
-			});
-		}
+
+		var thing = event.target.id;
+		console.log(thing);
+		fetch('/getdrinks/' + thing).then(function(response){
+			return response.json();
+		}).then(data => {
+			// console.log(data);
+			let arrName = [];
+			let arrPrice= [];
+			let arrUnit = [];
+			for (var i = 0; i < data.length; i++) {
+				arrName.push(data[i].item_name);
+				arrPrice.push(data[i].item_price);
+				arrUnit.push(data[i].unit);
+			}
+			this.setState({drinkList: arrName});
+			this.setState({dinkPrice: arrPrice});
+			this.setState({dinkUnit: arrUnit});
+		});
+
+
+
+		// const category =  event.target.id;
+		// let drinks =[];
+		// //---Need to chage this to fetch from db ---/
+		// if(category == "vodka"){
+		// 	drinks=["titos", "monopolowa", "deep eddy", "absolute", "stolichnaya", "kettle one", "grey goose", "belvedere"];
+		// 	this.setState({
+		// 		drinkList : drinks,
+		// 		results : true,
+		// 	});
+		// }
+		// else {
+		// 	drinks = ["a", "b", "c"];
+		// 	this.setState({
+		// 		drinkList : drinks,
+		// 		results : true,
+		// 	});
+		// }
 	}
 	render(){
 		let list;
 		let ordersummary;
 		if(this.state.results){
-			list = <DrinksList drinks={this.state.drinkList} />
+			list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
 			ordersummary = <Summary />
 		}
 
-		//return(<div>
-		//	<div>
-		//	<button onClick={this.categories0} value='whiskey'>hey</button>
-		//	<div className="container">)
+		
 
-		return(<div className="leftBar">
+		return(
+
+			<div className="leftBar">
 					<div>
 					<div className="container">
 
@@ -108,7 +112,7 @@ export default class Categories extends Component {
 			<div className="row">
 			<div className="col-md-12">
 			{this.state.drinkList.map((item) => 
-				<div><button className="btn " id={item} style={styles.drinksbutton} >{item}</button></div>
+				<div><button className="btn " id={item} style={styles.drinksbutton}>{item}</button></div>
 				)}
 			</div>
 			</div>
@@ -118,11 +122,11 @@ export default class Categories extends Component {
 			</div>
 			</div>
 
-			
 			</div>
 			</div>
 			</div>
 			</div>
-			</div>);
+			</div>
+			);
 	}
 }

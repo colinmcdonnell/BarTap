@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import User from './User/User';
 import Categories from './Categories/Categories'
+// Include React
+// var React = require("react");
+// Including the Link component from React Router to navigate within our application without full page reloads
+var Link = require("react-router").Link;
 
 
-// const styles ={ 
-// 	navBar: {
-// 		width: '100%',
-// 		height: '25px',
-// 		display: 'block',
-// 		background-color: #2E2E2E
-// 	}
-
-// };
 
 export default class Main extends Component {
 	render(){

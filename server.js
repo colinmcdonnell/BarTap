@@ -42,19 +42,32 @@ connection.connect(function(err) {
   if (err) throw err;
 });
 
+
 app.get("/getdrinks/:catg?", function(req,res){
 	console.log(req.body.drinks);
 	var dbQuery = "SELECT * FROM bev WHERE item_type = ?"
 	  connection.query(dbQuery,[req.params.catg], function(err, result) {
 	  	console.log(result);
 	  	res.json(result);
-
-	  	// for (var i = 0; i < result.length; i++) {
-	  	// 	console.log(result[i].item_name);
-	  	// };
-
-
 	  })
 	});
 
+app.get("/getprice/:drink?", function(req,res){
+	console.log(req.body.drinks);
+	var dbQuery = "SELECT price FROM bev WHERE item_name = ?"
+	  connection.query(dbQuery,[req.params.drink], function(err, result) {
+	  	console.log(result);
+	  	res.json(result);
+	  })
+	});
+
+app.post("/login", function(req,res){
+  console.log(req.body.loginarray);
+  var dbQuery = "SELECT * FROM users WHERE users = ?"
+    connection.query(dbQuery,[req.body.loginarray], function(err, result) {
+      res.json(result);
+      console.log(result);
+    });
+
+})
 

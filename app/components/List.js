@@ -6,7 +6,7 @@ var Link = require("react-router").Link;
 
 var buttonsarray = ["0","1","2","3","4","5","6","7","8","9"];
 
-class List extends React.Component{
+export default class List extends React.Component{
 
   constructor(props){
     super(props);
@@ -53,14 +53,9 @@ class List extends React.Component{
 
   };
 
-
-
-
   render(){
 
-// const List = props => {
-  // Using the filter method, we can create a new array containing only groceries which haven't been purchased
-  const buttonoptions = this.props.buttons;
+//  const buttonoptions = this.props.buttons;
 
   return (
     <div>
@@ -78,16 +73,3 @@ class List extends React.Component{
   );
 };
 }
-
-export default List;
-
-
-
-
-
-
-
-
- // <li className="list-group-item" value={item}>
- //    <button className="btn btn-default">{item}</button>
- //  </li>

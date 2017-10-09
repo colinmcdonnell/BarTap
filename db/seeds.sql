@@ -89,3 +89,7 @@ INSERT INTO bev (item_name, item_type, price, unit)
 	('shiner bock', 'beer', 5.50, 1.00),
 	('dos xx', 'beer', 5.50, 1.00),
 	('corona', 'beer', 6.00, 1.00);
+
+INSERT INTO users (emp_no, name, image)
+	VALUES
+	("1234", "Colin", "https://avatars3.githubusercontent.com/u/25713169?v=4&s=400");

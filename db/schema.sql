@@ -19,5 +19,7 @@ CREATE TABLE users
 (
 	id int NOT NULL AUTO_INCREMENT,
 	emp_no varchar(25) NOT NULL,
+	name varchar(255) NOT NULL,
+	image varchar(255) NOT NULL,
 	PRIMARY KEY (id)
 );

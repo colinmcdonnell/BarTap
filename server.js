@@ -34,7 +34,11 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "Sirniloc89",
+
+  password: "password",
+
+  
+
   database: "bev_db"
 });
 
@@ -52,8 +56,8 @@ app.get("/getdrinks/:catg?", function(req,res){
 	  })
 	});
 
-app.get("/getprice/:drink?", function(req,res){
-	console.log(req.body.drinks);
+app.get("/getprice/:drink", function(req,res){
+	console.log(req.params.drink);
 	var dbQuery = "SELECT price FROM bev WHERE item_name = ?"
 	  connection.query(dbQuery,[req.params.drink], function(err, result) {
 	  	console.log(result);
@@ -61,13 +65,28 @@ app.get("/getprice/:drink?", function(req,res){
 	  })
 	});
 
-app.post("/login", function(req,res){
-  console.log(req.body.loginarray);
-  var dbQuery = "SELECT * FROM users WHERE users = ?"
-    connection.query(dbQuery,[req.body.loginarray], function(err, result) {
-      res.json(result);
-      console.log(result);
+
+
+
+
+app.get("/login/:emp_no", function(req,res){
+
+
+  var dbQuery = "SELECT * FROM users WHERE emp_no = ?"
+    connection.query(dbQuery,[req.params.emp_no], function(err, result) {
+      if(result.length > 0){
+        res.json(result[0]);
+      }
+      else{
+        res.status(404).send('Employee Not found');     
+      }
+   
+      
     });
 
-})
+});
+
+app.get("*", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 

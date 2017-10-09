@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from "./components/Main";
-import List from "./components/List"
+import List from "./components/List";
 
 
 // ReactDOM.render(<List buttons = {buttonsarray} />, document.getElementById("app"));
@@ -9,8 +9,8 @@ import List from "./components/List"
 
 
 // Include the Main React Dependencies
-var React = require("react");
-var ReactDOM = require("react-dom");
+// var React = require("react");
+// var ReactDOM = require("react-dom");
 
 // Grabs the Routes
 var routes = require("./config/routes");
@@ -21,4 +21,4 @@ ReactDOM.render(routes, document.getElementById("app"));
 
 
 
-ReactDOM.render(<Main />, document.getElementById("app"));
+//ReactDOM.render(<Main />, document.getElementById("app"));

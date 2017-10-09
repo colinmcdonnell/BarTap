@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import DrinksList from "../DrinksList/DrinksList";
 import Summary from "../Summary/Summary";
-import axios from 'axios';
+import helpers from '../../utils/Helpers';
 //--Need to fetch this from the db --//
 
+import axios from 'axios';
+//--Need to fetch this from the db --//
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
 const styles ={ 
@@ -48,6 +50,9 @@ export default class Categories extends Component {
 		
 	}
 
+
+
+
 	handleClick(event) {
 
 		var thing = event.target.id;
@@ -75,42 +80,6 @@ export default class Categories extends Component {
 
 
 
-		// const category =  event.target.id;
-		// let drinks =[];
-		// //---Need to chage this to fetch from db ---/
-		// if(category == "vodka"){
-		// 	drinks=["titos", "monopolowa", "deep eddy", "absolute", "stolichnaya", "kettle one", "grey goose", "belvedere"];
-		// 	this.setState({
-		// 		drinkList : drinks,
-		// 		results : true,
-		// 	});
-		// }
-		// else {
-		// 	drinks = ["a", "b", "c"];
-		// 	this.setState({
-		// 		drinkList : drinks,
-		// 		results : true,
-		// 	});
-		// }
-
-		// const category =  event.target.id;
-		// let drinks =[];
-		// //---Need to chage this to fetch from db ---/
-		// if(category == "vodka"){
-		// 	drinks=["titos", "monopolowa", "deep eddy", "absolute", "stolichnaya", "kettle one", "grey goose", "belvedere"];
-		// 	this.setState({
-		// 		drinkList : drinks,
-				
-		// 	});
-		// }
-		// else {
-		// 	drinks = ["a", "b", "c"];
-		// 	this.setState({
-		// 		drinkList : drinks,
-				
-		// 	});
-		// }
-
 	}
 	handleOrderClick(event) {
 		const item =  event.target.id;
@@ -119,14 +88,14 @@ export default class Categories extends Component {
 		fetch('/getprice/' + item).then(function(response){
 			return response.json();
 		}).then(data => {
-			// console.log(data[0].price);
-			
+
+
 			let arrPrice = this.state.drinkPrice;
-			
+
 			arrPrice.push(data[0].price);
-			
+
 			this.setState({drinkPrice: arrPrice});
-			
+
 			console.log(this.state.drinkPrice);
 
 
@@ -164,7 +133,7 @@ export default class Categories extends Component {
 			ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.price}/>
 		}
 
-		
+
 
 		return(
 
@@ -173,14 +142,14 @@ export default class Categories extends Component {
 					<div className="container">
 
 			<div className="row">
-			<div className="col-md-4">
+			<div className="col-md-5">
 			{categories.map((item) => (
 				<div><button className="btn btn-default" id={item} style={styles.button} onClick={this.handleClick} >{item}</button></div>
 				))}
 			<button className="btn btn-warning" style={styles.button}>LOGOUT</button>
 			</div>
 			
-			<div className="col-md-8">
+			<div className="<col-md-7></col-md-7>">
 			<div className="row">
 			<div className="col-md-12">
 			{this.state.drinkList.map((item) => 

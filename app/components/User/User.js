@@ -24,8 +24,8 @@ export default class User extends Component {
 			<div className="row">
 			<div className="col-md-4">
 			<div> 
-			<img id="photo" src= {userDetails.image} style={styles.img}/>
-			<h4 id="userName">{userDetails.name}</h4>
+			<img id="photo" src= {this.props.image} style={styles.img}/>
+			<h4 id="userName">{this.props.name}</h4>
 			</div>
 			</div>
 			<div className="col-md-1"></div>

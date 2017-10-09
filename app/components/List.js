@@ -36,7 +36,9 @@ class List extends React.Component{
         console.log("data here: " + data.emp_no);
         browserHistory.push({
           pathname: '/main',
-          state: { user: data.emp_no }
+          state: { user: data.emp_no,
+                   user_name: data.name,
+                   user_image: data.image }
         });  
       } else {
         this.setState({error: "Employee Not found"});

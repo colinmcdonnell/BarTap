@@ -19,7 +19,7 @@ export default class Main extends Component {
 	render(){
 		return(<div>
 			<h1 id="navBar">bartap</h1>
-			<User />
+			<User name={this.props.location.state.user_name} image={this.props.location.state.user_image}/>
       		<Categories />
 		</div>);
 	}

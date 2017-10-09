@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-//--Need to fetch this from the db --//
-var userDetails = {
-	name: "COLIN M",
-	image : "https://avatars3.githubusercontent.com/u/25713169?v=4&s=400"
-}
-
 const styles ={ 
 	img: {
 		width: '100px',

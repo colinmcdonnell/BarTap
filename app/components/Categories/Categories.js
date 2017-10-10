@@ -66,8 +66,8 @@ export default class Categories extends Component {
 				arrUnit.push(data[i].unit);
 			}
 			this.setState({drinkList: arrName});
-			this.setState({dinkPrice: arrPrice});
-			this.setState({dinkUnit: arrUnit});
+			//this.setState({drinkPrice: arrPrice});
+			this.setState({drinkUnit: arrUnit});
 
 			console.log(arrPrice);
 
@@ -88,11 +88,15 @@ export default class Categories extends Component {
 
 			let arrPrice = this.state.drinkPrice;
 
-			arrPrice.push(data[0].price);
+			//arrPrice.push(data[0].price);
+
+			let index = this.state.drink.indexOf(item);
+				arrPrice[index] = data[0].price;
+			console.log("Indexxxxxx Price: " + index);
 
 			this.setState({drinkPrice: arrPrice});
 
-			console.log(this.state.drinkPrice);
+			console.log("drinkPrice: " + this.state.drinkPrice);
 
 
 		});
@@ -123,10 +127,10 @@ export default class Categories extends Component {
 		if(this.state.results){
 
 			list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
-			ordersummary = <Summary />
+			//ordersummary = <Summary />
 
 			//list = <DrinksList drinks={this.state.drinkList}  />
-			ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.price}/>
+			ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
 		}
 
 

@@ -11,8 +11,7 @@ const styles ={
 
 
 export default class Summary extends Component {
-
-	
+		
 	render(){
 		let totalBeforeTax = 0;
 		let total = 0;
@@ -25,8 +24,10 @@ export default class Summary extends Component {
 		for(let i=0; i<count.length; i++){
 			totalBeforeTax = totalBeforeTax + (count[i]*price[i]);
 		}
+
 		tax = 0.0825 * totalBeforeTax;
-		total = totalBeforeTax + tax;
+		total = totalBeforeTax + totalBeforeTax;
+
 		return(
 			<div>
 
@@ -38,21 +39,21 @@ export default class Summary extends Component {
 						
 							<div className="col-sm-4">
 								<h4>Item</h4>
-								{this.props.drink.map((item) => (
+								{drinks.map((item) => (
 									<div>{item}</div>
 								))}
 							</div>
 
 							<div className="col-sm-2">
 								<h4>Count</h4>
-								{this.props.count.map((item) => (
+								{count.map((item) => (
 								<div>{item}</div>
 								))}
 							</div>
 
 							<div className="col-sm-2">
 									<h4>Price</h4>
-									{this.props.price.map((item) => (
+									{price.map((item) => (
 									<div>{`$${item.toFixed(2)}`}</div>
 									))}
 							</div>

@@ -3,6 +3,20 @@ import User from './User/User';
 import Categories from './Categories/Categories';
 import {browserHistory} from 'react-router';
 
+const styles ={ 
+	
+	drinksbutton: {
+		width: '35%',
+		height:'115px',
+	},
+
+	sideBar: {
+		backgroundColor: '#9B9B9B',
+	}
+	
+
+};
+
 export default class Main extends Component {
 	constructor(props){
 		super(props);
@@ -22,9 +36,8 @@ export default class Main extends Component {
 		let user = this.state == null? <div></div>:<User name={this.state.user_name} image={this.state.user_image}/>
 		return(<div>
 			<h1 id="navBar">bartap</h1>
-			
 			 {user}
-      		<Categories />
+      		<Categories  logout={this.logout}/>
 		</div>);
 	}
 }

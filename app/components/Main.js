@@ -22,7 +22,7 @@ export default class Main extends Component {
 		let user = this.state == null? <div></div>:<User name={this.state.user_name} image={this.state.user_image}/>
 		return(<div>
 			<h1 id="navBar">bartap</h1>
-			<button id="logout" className="btn btn-default" onClick={this.logout}>Logout</button>
+			
 			 {user}
       		<Categories />
 		</div>);

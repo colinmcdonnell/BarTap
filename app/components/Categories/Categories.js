@@ -8,25 +8,21 @@ import axios from 'axios';
 //--Need to fetch this from the db --//
 var categories = ["vodka", "rum", "whiskey", "gin", "scotch", "tequila", "cordials", "beer"];
 
-const styles ={ 
-	img: {
-		width: '100px',
-		height: '100px',
-		display: 'block',
-		borderRadius: '50%',
-	},
-	button: {
-		width: '45.75%',
-		height:'75px',
+var userDetails = {
+	name: "COLIN MCDONNELL",
+	image : "https://avatars3.githubusercontent.com/u/25713169?v=4&s=400"
+}
 
-		
-	},
+const styles ={ 
+	
 	drinksbutton: {
-		width: '100px',
-		height:'100px',
-		margin: "5px",
-		float: 'left'
+		width: '35%',
+		height:'115px',
 	},
+
+	sideBar: {
+		backgroundColor: '#9B9B9B',
+	}
 	
 
 };
@@ -140,41 +136,57 @@ export default class Categories extends Component {
 
 
 		return(
-
-			<div className="leftBar">
-					<div>
-					<div className="container">
-
+		<div>
+		
 			<div className="row">
-			<div className="col-md-5">
-			{categories.map((item) => (
-				<div><button className="btn btn-default" id={item} style={styles.button} onClick={this.handleClick} >{item}</button></div>
-				))}
-			<button className="btn btn-warning" style={styles.button}>LOGOUT</button>
-			</div>
+
+				<div className="col-md-4">
+
+					<div className="row">
+						<div className="col-md-12">
+							<img id="photo" src={userDetails.image} />
+							<h4 id="userName"> {userDetails.name}</h4>
+
+
+
+							{categories.map((item) => (
+							<div><button className="btn" id={item} style={styles.button} onClick={this.handleClick} >{item}</button></div>
+							))}
+							<button className="btn btn-warning" style={styles.button}>LOGOUT</button>
+						</div>
+					</div>
+				</div>
+
 			
-			<div className="<col-md-7></col-md-7>">
-			<div className="row">
-			<div className="col-md-12">
-			{this.state.drinkList.map((item) => 
+				<div className="col-md-8">	
+						
+							
+					{this.state.drinkList.map((item) => 
 
 				// <div><button className="btn " id={item} style={styles.drinksbutton}>{item}</button></div>
 
-				<div><button className="btn " id={item} style={styles.drinksbutton} onClick={this.handleOrderClick} >{item}</button></div>
+						<span className="drinks">
+								<button className="btn2" id={item} style={styles.drinksbutton} onClick={this.handleOrderClick} >{item}</button>
+						</span>
 
-				)}
+					)}
+
+
+
+				
+
+				<div className="col-md-12">
+					{ordersummary}
+				</div>
+
+				</div>
+				
+				
 			</div>
-			</div>
-			<div className="row">
-			<div className="col-md-12">
-				{ordersummary}
-			</div>
-			</div>
-			</div>
-			</div>
-			</div>
-			</div>
-			</div>
+		</div>
+	
+
+			
 			);
 	}
 }

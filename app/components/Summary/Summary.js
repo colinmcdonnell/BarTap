@@ -48,7 +48,7 @@ export default class Summary extends Component {
 			<div className="col-md-1">
 			<h4>Price</h4>
 			{this.props.price.map((item) => (
-				<div>{`$${item}`}</div>
+				<div>{`$${item.toFixed(2)}`}</div>
 				))}
 			</div>
 			</div>
@@ -71,7 +71,6 @@ export default class Summary extends Component {
 			</div>
 			</div>
 			<div className="row">
-			<button className="btn btn-warning" style={styles.operations}>EDIT</button>
 			<button className="btn btn-warning" style={styles.operations}>CLEAR</button>
 			<button className="btn btn-warning" style={styles.operations}>SUBMIT</button>
 			</div>

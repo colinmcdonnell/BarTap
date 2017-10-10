@@ -32,7 +32,7 @@ export default class List extends React.Component{
     }).then(data => {
       loginarray="";
       this.setState({error: ""});
-      if(data.emp_no > -1){
+      if(data.emp_no > -1 && data.emp_no !== '0000'){
         console.log("data here: " + data.emp_no);
         browserHistory.push({
           pathname: '/main',
@@ -40,7 +40,17 @@ export default class List extends React.Component{
                    user_name: data.name,
                    user_image: data.image }
         });  
-      } else {
+      } 
+      else if(data.emp_no > -1 && data.emp_no == '0000'){
+        console.log("data here: " + data.emp_no);
+        browserHistory.push({
+          pathname: '/admin',
+          state: { user: data.emp_no,
+                   user_name: data.name,
+                   user_image: data.image }
+        });  
+      }
+      else {
         this.setState({error: "Employee Not found"});
       }
     });

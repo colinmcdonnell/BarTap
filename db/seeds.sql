@@ -93,5 +93,5 @@ INSERT INTO bev (item_name, item_type, price, unit)
 INSERT INTO users (emp_no, name, image)
 	VALUES
 	("1234", "Colin", "https://avatars3.githubusercontent.com/u/25713169?v=4&s=400"),
-	("1111", "Nithya", "https://avatars1.githubusercontent.com/u/6827019?v=4&s=400&u=9b2ce4eabf47ab38ca9246584a9e962a162c5e02"),
+	("0000", "Nithya", "https://avatars1.githubusercontent.com/u/6827019?v=4&s=400&u=9b2ce4eabf47ab38ca9246584a9e962a162c5e02"),
 	("2222", "AK", "https://avatars2.githubusercontent.com/u/10067530?v=4&s=400");

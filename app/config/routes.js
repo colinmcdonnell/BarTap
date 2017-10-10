@@ -8,6 +8,7 @@ import { Route,
        } from 'react-router';
 import Main from "../components/Main";
 import List from "../components/List";
+import Admin from "../components/Admin";
 
 module.exports = (
   <Router history={browserHistory}>
@@ -15,5 +16,6 @@ module.exports = (
       <IndexRoute component={List} />
     </Route>
     <Route path="/main" component={Main}></Route>
+    <Route path="/admin" component={Admin}></Route>
   </Router>
 );

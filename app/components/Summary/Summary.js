@@ -30,58 +30,75 @@ export default class Summary extends Component {
 		return(
 			<div>
 
-				<h3 id="orderSum">Order Summary</h3>
+				<div> <h3 id="orderSum">Order Summary</h3> </div>
 
+				
 					<div className ="row">
 					
 						
-							<div className="col-md-2">
+							<div className="col-sm-4">
 								<h4>Item</h4>
 								{this.props.drink.map((item) => (
 									<div>{item}</div>
 								))}
 							</div>
 
-								<div className="col-md-1">
-									<h4>Count</h4>
-										{this.props.count.map((item) => (
-											<div>{item}</div>
-										))}
+							<div className="col-sm-2">
+								<h4>Count</h4>
+								{this.props.count.map((item) => (
+								<div>{item}</div>
+								))}
+							</div>
 
-								<div className="col-md-1">
+							<div className="col-sm-2">
 									<h4>Price</h4>
-										{this.props.price.map((item) => (
-											<div>{`$${item.toFixed(2)}`}</div>
-										))}
-								</div>
+									{this.props.price.map((item) => (
+									<div>{`$${item.toFixed(2)}`}</div>
+									))}
+							</div>
 					</div>
+					
 					
 
 					<div className="row">
-						<div className="col-md-2">
+
+						<div className="col-md-4">
 							<h5>Tax(8.25%)</h5>
 						</div>
-						<div className="col-md-1"></div>
-						<div className="col-md-1">
+
+						<div className="col-md-2"> 
+						</div>
+
+						<div className="col-md-2">
 							<h5>{`$${tax.toFixed(2)}`}</h5>
 						</div>
+
 					</div>
+
+					
 
 					<div className="row">
-						<div className="col-md-2">
+
+						<div className="col-md-4">
 							<h5>Total</h5>
 						</div>
-						<div className="col-md-1"></div>
-						<div className="col-md-1">
+
+						<div className="col-md-2">
+						</div>
+
+						<div className="col-md-2">
 							<h5>{`$${total.toFixed(2)}`}</h5>
 						</div>
+
 					</div>
 
+
+					<div className="row">
 					
 							<button className="btn btn-warning" style={styles.operations}>CLEAR</button>
 							<button className="btn btn-warning" style={styles.operations}>SUBMIT</button>
+					</div>
 						
-				</div>
 
 
 

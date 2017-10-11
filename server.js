@@ -47,7 +47,6 @@ app.get("/getdrinks/:catg?", function(req,res){
 	console.log(req.body.drinks);
 	var dbQuery = "SELECT * FROM bev WHERE item_type = ?"
 	  connection.query(dbQuery,[req.params.catg], function(err, result) {
-	  	console.log(result);
 	  	res.json(result);
 	  })
 	});
@@ -56,12 +55,16 @@ app.get("/getprice/:drink", function(req,res){
 	console.log(req.params.drink);
 	var dbQuery = "SELECT price FROM bev WHERE item_name = ?"
 	  connection.query(dbQuery,[req.params.drink], function(err, result) {
-	  	console.log(result);
 	  	res.json(result);
 	  })
 	});
 
-
+app.get("/getInventoryData/", function(req,res){
+  var dbQuery = "SELECT * FROM inventory"
+    connection.query(dbQuery, function(err, result) {
+      res.json(result);
+    })
+  });
 
 
 

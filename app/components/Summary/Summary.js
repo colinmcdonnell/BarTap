@@ -26,7 +26,7 @@ export default class Summary extends Component {
 		}
 
 		tax = 0.0825 * totalBeforeTax;
-		total = totalBeforeTax + totalBeforeTax;
+		total = totalBeforeTax + tax;
 
 		return(
 			<div>

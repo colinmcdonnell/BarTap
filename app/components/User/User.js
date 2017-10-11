@@ -13,11 +13,19 @@ const styles ={
 export default class User extends Component {
 	render(){
 		return(
-			
+			<div className="leftBar">
 			<div className="container">
-			
-
-			
+			<div className="row">
+			<div className="col-md-4">
+			<div>
+			<img id="photo" src= {this.props.image} style={styles.img}/>
+			<h4 id="userName">{this.props.name}</h4>
+			</div>
+			</div>
+			<div className="col-md-1"></div>
+			<div className="col-md-7"></div>
+			</div>
+			</div>
 			</div>
 			
 			);

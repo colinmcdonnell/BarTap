@@ -47,7 +47,8 @@ export default class List extends React.Component{
           pathname: '/admin',
           state: { user: data.emp_no,
                    user_name: data.name,
-                   user_image: data.image }
+                   user_image: data.image,
+                    }
         });  
       }
       else {

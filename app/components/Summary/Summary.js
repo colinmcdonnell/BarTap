@@ -11,7 +11,30 @@ const styles ={
 
 
 export default class Summary extends Component {
-		
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			total: 0,
+			tax: 0,
+			totalBeforeTax: 0,
+			drinks: this.props.drink,
+			count: this.props.count,
+			price: this.props.price
+		}
+		this.total = 0;
+		// this.handleClearBtn = this.handleClearBtn.bind(this);
+	}
+
+	// componentWillReceiveProps(nextProps) {
+
+	// }
+
+	// handleClearBtn(){
+	// 	console.log('clicked');
+	// 	this.setState({total: 0});
+	// }
+	
 	render(){
 		let totalBeforeTax = 0;
 		let total = 0;
@@ -20,9 +43,11 @@ export default class Summary extends Component {
 		let drinks = this.props.drink;
 		let count = this.props.count;
 		let price = this.props.price;
+
+
 		
 		for(let i=0; i<count.length; i++){
-			totalBeforeTax = totalBeforeTax + (count[i]*price[i]);
+			totalBeforeTax = totalBeforeTax + (count[i] * price[i]);
 		}
 
 		tax = 0.0825 * totalBeforeTax;
@@ -63,16 +88,24 @@ export default class Summary extends Component {
 
 					<div className="row">
 
-						<div className="col-md-4">
+						{drinks.length > 0 ? <div className="col-md-4">
 							<h5>Tax(8.25%)</h5>
-						</div>
+						</div> : null}
+
+						{/*<div className="col-md-4">
+													<h5>Tax(8.25%)</h5>
+												</div>*/}
 
 						<div className="col-md-2"> 
 						</div>
 
-						<div className="col-md-2">
-							<h5>{`$${tax.toFixed(2)}`}</h5>
-						</div>
+						{tax.length > 0 ? <div className="col-md-4">
+							<h5>Tax(8.25%)</h5>
+						</div> : null}
+
+						{/*<div className="col-md-2">
+													<h5>{`$${tax.toFixed(2)}`}</h5>
+												</div>*/}
 
 					</div>
 
@@ -96,7 +129,7 @@ export default class Summary extends Component {
 
 					<div className="row">
 					
-							<button className="btn btn-warning" style={styles.operations}>CLEAR</button>
+							<button className="btn btn-warning" style={styles.operations} onClick={this.props.clear}>CLEAR</button>
 							<button className="btn btn-warning" style={styles.operations}>SUBMIT</button>
 					</div>
 						

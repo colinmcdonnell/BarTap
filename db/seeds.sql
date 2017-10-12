@@ -95,3 +95,14 @@ INSERT INTO users (emp_no, name, image)
 	("1234", "Colin", "https://avatars3.githubusercontent.com/u/25713169?v=4&s=400"),
 	("0000", "Nithya", "https://avatars1.githubusercontent.com/u/6827019?v=4&s=400&u=9b2ce4eabf47ab38ca9246584a9e962a162c5e02"),
 	("2222", "AK", "https://avatars2.githubusercontent.com/u/10067530?v=4&s=400");
+
+INSERT INTO inventory (item_name, item_id, type, current, inventory_upper, inventory_lower)
+VALUES
+("titos", 1, "vodka", 600, 600, 200),
+("monopolowa", 2, "vodka", 600, 600, 200),
+("deep eddy", 3, "vodka", 600, 600, 200),
+("absolute", 4, "vodka", 600, 600, 200),
+("stolichnaya", 5, "vodka", 600, 600, 200),
+("kettle one", 6, "vodka", 600, 600, 200),
+("grey goosea", 7, "vodka", 600, 600, 200),
+("belvedere", 8, "vodka", 600, 600, 200)

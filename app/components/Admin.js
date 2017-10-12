@@ -60,6 +60,9 @@ export default class Admin extends Component {
 			<User name={this.state.name} image={this.state.image} />
 			<div><br/></div>
 			<button className="btn-default" onClick={this.getInventory}>View Inventory</button>
+			<span> </span>
+			<button className="btn-default">Order Low Inventory</button>
+			
 			{inventoryData}
 			</div>
 			)

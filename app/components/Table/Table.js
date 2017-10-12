@@ -14,7 +14,7 @@ export default class Table extends Component {
 				<th>ITEM NAME</th>
 				<th>ITEM TYPE</th>
 				<th>CURRENT VALUE</th>
-				<th>PAR VALUE</th>
+				<th>INVENTORY LOWER VALUE</th>
 				</tr>
 				</thead>
 				<tbody>{this.props.data.map(function(item, key) {

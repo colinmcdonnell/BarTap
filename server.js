@@ -75,8 +75,6 @@ app.post("/manipulateInventoryData/", function(req, res) {
     })
 });
 
-
-
 app.get("/login/:emp_no", function(req, res) {
 
 

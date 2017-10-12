@@ -16,6 +16,7 @@ export default class Admin extends Component {
 			par_value: [],
 			data: [],
 			result: false,
+			toggle: false,
 		}
 		if(this.props.location.state == null){
 			browserHistory.push("/");
@@ -25,12 +26,19 @@ export default class Admin extends Component {
 		this.getInventory = this.getInventory.bind(this);
 	}
 	getInventory(){
+		if(this.state.result === true){
+			this.setState({data: [],
+				result: false});
+		}
+		else {
 		fetch('/getInventoryData/').then(function(response){
 			return response.json();
 		}).then(data => {
 			this.setState({data: data,
-				           result: true});
-			});
+				result: true});
+		});
+	}
+		
 	}
 
 	logout(){

@@ -43,13 +43,11 @@ export default class Categories extends Component {
 	}
 
 	clearBtn() {
-		// this.setState({drinkList: []});
 		this.setState({drinkPrice: []});
 		this.setState({drinkUnit: []});
 		this.setState({count: []});
 		this.setState({drink: []});
 	}
-
 	
 	handleClick(event) {
 
@@ -76,9 +74,8 @@ export default class Categories extends Component {
 
 		});
 
-
-
 	}
+
 	handleOrderClick(event) {
 		const item =  event.target.id;
 		let found = false;
@@ -114,8 +111,7 @@ export default class Categories extends Component {
 		this.setState({
 				
 				results : true,
-			});
-		
+			});		
 		
 	}
 	render(){

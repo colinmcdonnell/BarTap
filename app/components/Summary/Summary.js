@@ -9,7 +9,6 @@ const styles ={
 	},
 };
 
-
 export default class Summary extends Component {
 
 	constructor(props) {
@@ -23,17 +22,12 @@ export default class Summary extends Component {
 			price: this.props.price
 		}
 		this.total = 0;
-		// this.handleClearBtn = this.handleClearBtn.bind(this);
+		this.submitBtn = this.submitBtn.bind(this);
 	}
 
-	// componentWillReceiveProps(nextProps) {
-
-	// }
-
-	// handleClearBtn(){
-	// 	console.log('clicked');
-	// 	this.setState({total: 0});
-	// }
+	submitBtn(event){
+		console.log('submitBtn');
+	}
 	
 	render(){
 		let totalBeforeTax = 0;
@@ -52,7 +46,6 @@ export default class Summary extends Component {
 
 		tax = 0.0825 * totalBeforeTax;
 		total = totalBeforeTax + tax;
-
 
 return(
 			<div className="sumBox">
@@ -93,20 +86,12 @@ return(
 							<h5>Tax(8.25%)</h5>
 						</div> : null}
 
-						{/*<div className="col-md-4">
-													<h5>Tax(8.25%)</h5>
-												</div>*/}
-
 						<div className="col-md-4"> 
 						</div>
 
 						{tax > 0 ? <div className="col-md-4">
 							<h5>{`$${tax.toFixed(2)}`}</h5>
 						</div> : null}
-
-						{/*<div className="col-md-2">
-													<h5>{`$${tax.toFixed(2)}`}</h5>
-												</div>*/}
 
 					</div>
 
@@ -128,28 +113,14 @@ return(
 					</div>
 
 
+
 					<div className="row" id="sumRows">
 
 								<button className="orderBtn" onClick={this.props.clear}>CLEAR</button> 
 								<span> </span>
 								<button className="orderBtn">SUBMIT</button> <br /> <br />
-							
-					</div>
-						
-
-
-
-			</div>
+						</div>
+						</div>
 						);
-
-
-
-
-			
-
-
-	
-
-
-	}
+}
 }

@@ -38,7 +38,16 @@ export default class Categories extends Component {
 		
 		this.handleClick = this.handleClick.bind(this);
 		this.handleOrderClick = this.handleOrderClick.bind(this);
+		this.clearBtn = this.clearBtn.bind(this);
 		
+	}
+
+	clearBtn() {
+		// this.setState({drinkList: []});
+		this.setState({drinkPrice: []});
+		this.setState({drinkUnit: []});
+		this.setState({count: []});
+		this.setState({drink: []});
 	}
 
 	
@@ -114,8 +123,13 @@ export default class Categories extends Component {
 		let ordersummary;
 		if(this.state.results){
 
+
 			//list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
-			ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
+			//ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
+
+			//list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
+			ordersummary = <Summary clear={this.clearBtn} drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
+
 		}
 
 		return(

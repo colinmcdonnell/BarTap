@@ -11,7 +11,30 @@ const styles ={
 
 
 export default class Summary extends Component {
-		
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			total: 0,
+			tax: 0,
+			totalBeforeTax: 0,
+			drinks: this.props.drink,
+			count: this.props.count,
+			price: this.props.price
+		}
+		this.total = 0;
+		// this.handleClearBtn = this.handleClearBtn.bind(this);
+	}
+
+	// componentWillReceiveProps(nextProps) {
+
+	// }
+
+	// handleClearBtn(){
+	// 	console.log('clicked');
+	// 	this.setState({total: 0});
+	// }
+	
 	render(){
 		let totalBeforeTax = 0;
 		let total = 0;
@@ -20,18 +43,18 @@ export default class Summary extends Component {
 		let drinks = this.props.drink;
 		let count = this.props.count;
 		let price = this.props.price;
+
+
 		
 		for(let i=0; i<count.length; i++){
-			totalBeforeTax = totalBeforeTax + (count[i]*price[i]);
+			totalBeforeTax = totalBeforeTax + (count[i] * price[i]);
 		}
 
 		tax = 0.0825 * totalBeforeTax;
 		total = totalBeforeTax + tax;
 
 
-
-
-	return(
+return(
 			<div className="sumBox">
 
 				<div> <p id="orderSum">Order Summary</p> </div>
@@ -66,16 +89,24 @@ export default class Summary extends Component {
 
 					<div className="row" id="sumRows">
 
-						<div className="col-md-4">
+						{drinks.length > 0 ? <div className="col-md-4">
 							<h5>Tax(8.25%)</h5>
-						</div>
+						</div> : null}
+
+						{/*<div className="col-md-4">
+													<h5>Tax(8.25%)</h5>
+												</div>*/}
 
 						<div className="col-md-4"> 
 						</div>
 
-						<div className="col-md-4">
+						{tax > 0 ? <div className="col-md-4">
 							<h5>{`$${tax.toFixed(2)}`}</h5>
-						</div>
+						</div> : null}
+
+						{/*<div className="col-md-2">
+													<h5>{`$${tax.toFixed(2)}`}</h5>
+												</div>*/}
 
 					</div>
 
@@ -99,7 +130,7 @@ export default class Summary extends Component {
 
 					<div className="row" id="sumRows">
 
-								<button className="orderBtn">CLEAR</button> 
+								<button className="orderBtn" onClick={this.props.clear}>CLEAR</button> 
 								<span> </span>
 								<button className="orderBtn">SUBMIT</button> <br /> <br />
 							
@@ -113,6 +144,11 @@ export default class Summary extends Component {
 
 
 
+
+			
+
+
+	
 
 
 	}

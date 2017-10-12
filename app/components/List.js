@@ -1,7 +1,7 @@
 import React from "react";
 import {browserHistory} from 'react-router';
 
-var loginarray="";
+var loginarray= "";
 var Link = require("react-router").Link;
 
 var buttonsarray = ["0","1","2","3","4","5","6","7","8","9"];
@@ -74,6 +74,10 @@ export default class List extends React.Component{
 
   };
 
+loginClear() {
+  loginarray = "";
+}
+
   render(){
 
 //  const buttonoptions = this.props.buttons;
@@ -97,7 +101,7 @@ export default class List extends React.Component{
                     ))}
                     <button id="loginsubmit" className="num-bg" onClick={this.login}>Submit</button>
 
-                    <button className="num-bg">Clear</button>
+                    <button className="num-bg" id="loginClear" onClick={this.loginClear}>Clear</button>
                   
                   </span>
                 </div>

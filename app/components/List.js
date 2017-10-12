@@ -6,6 +6,16 @@ var Link = require("react-router").Link;
 
 var buttonsarray = ["0","1","2","3","4","5","6","7","8","9"];
 
+const imgURL = 'https://unsplash.com/photos/sX7oITk-UXE';
+
+var background = "https://images.unsplash.com/photo-1495399396117-a3763646f854?dpr=1&auto=compress,format&fit=crop&w=750&h=&q=80&cs=tinysrgb&crop="
+
+var cover = {
+  backgroundImage: 'url(' + background + ')',
+  backgroundSize: 'cover',
+  overflow: 'hidden',
+}
+
 export default class List extends React.Component{
 
   constructor(props){
@@ -51,7 +61,7 @@ export default class List extends React.Component{
                   }
         });  
       }
-      else {
+       else {
         this.setState({error: "Employee Not found"});
       }
     });
@@ -69,18 +79,35 @@ export default class List extends React.Component{
 //  const buttonoptions = this.props.buttons;
 
   return (
-    <div>
-      <strong>{this.state.error}</strong>
-    <ul className="list-group">
-      {buttonsarray.map(item => (
-        <div className="rows">
-          <button value={item} className="num-bg zero" id={item} onClick={this.concat}>{item}</button>
+
+        <div style={cover} className="cover">
+
+          <h1 id="navBar"> bartap </h1>
+
+              <strong>{this.state.error}</strong>
+            <div className="row">
+              <div className="col-sm-4"> </div>
+                <div className="col-sm-4">
+
+                  <span className="list-group">
+                    {buttonsarray.map(item => (
+                      
+                        <button value={item} className="num-bg zero" id={item} onClick={this.concat}>{item}</button>
+                      
+                    ))}
+                    <button id="loginsubmit" className="num-bg" onClick={this.login}>Submit</button>
+
+                    <button className="num-bg">Clear</button>
+                  
+                  </span>
+                </div>
+              <div className="col-sm-4"> </div>
+
+            </div>
+            <strong>{this.state.error}</strong>
+
         </div>
-      ))}
-      <button id="loginsubmit" onClick={this.login}>Submit</button>
-    </ul>
-    <strong>{this.state.error}</strong>
-    </div>
+
   );
 };
 }

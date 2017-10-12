@@ -33,11 +33,14 @@ export default class Main extends Component {
 	}
 
 	render(){
-		let user = this.state == null? <div></div>:<User name={this.state.user_name} image={this.state.user_image}/>
+		let categories = this.state == null? <div></div>:<Categories  logout={this.logout} name={this.state.user_name} image={this.state.user_image} />
+		
 		return(<div>
 			<h1 id="navBar">bartap</h1>
-			 {user}
-      		<Categories  logout={this.logout}/>
-		</div>);
+			 {/*{user}*/}
+      		{/*<Categories  logout={this.logout}/>*/}
+      		{categories}
+		</div>
+		);
 	}
 }

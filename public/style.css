@@ -13,6 +13,12 @@
 
 }
 
+#gray {
+	background-color:#9B9B9B;
+	padding-bottom:85px;
+	margin-top:-2%;
+}
+
 
 @font-face {
   font-family: 'Aster';
@@ -107,7 +113,7 @@ font-size:18px;
 border-bottom:1px solid white;
 border-top: 1px solid white;
 width:100%;
-height:75px;
+height:85px;
 
 }
 
@@ -125,6 +131,20 @@ height:75px;
 	font-weight:bold;
 }
 
+.btn3 {
+color:#FFFFFF;
+background-color:#F5A623;
+font-family:'TradeGothic', sans-serif;
+font-weight:bold;
+text-transform:uppercase;
+letter-spacing:1px;
+font-size:18px;
+width:100%;
+height:100px;
+border:none;
+
+}
+
 .drinkButton{
 color:#FFFFFF;
 background-color:#9B9B9B;
@@ -138,7 +158,62 @@ font-size:18px;
 
 #orderSum {
 	font-family:'TradeGothic', sans-serif;
-	color:orange;
+	font-weight:bold;
+	color: #F5A623;
 	text-align:center;
+	text-transform:uppercase;
+	background-color: #4A4A4A;
+	font-size:18px;
+	padding: 1%;
+	
 }
+
+.sumBox {
+	border:#4A4A4A solid thick;
+	margin-top: 3%;
+	margin-left:3%;
+	margin-right:5%;
+}
+
+#sumRows {
+	text-align:center;
+	text-transform:uppercase;
+}
+
+
+.orderBtn {
+	color:#F5A623;
+	background-color: #4A4A4A;
+	font-family:'TradeGothic', sans-serif;
+	font-weight:bold;
+	padding-top:2%;
+	padding-bottom:2%;
+	padding-right:5%;
+	padding-left:5%;
+	border-radius:5%;
+	border:none;
+}
+
+
+.cover {
+	height:800px;
+
+}
+
+.list-group {
+	text-align:center;
+	width:5px;
+
+}
+
+.num-bg {
+	background-color:white;
+	color:black;
+	opacity:0.8;
+	display: inline-block;
+	width: 100px;
+
+
+}
+
 

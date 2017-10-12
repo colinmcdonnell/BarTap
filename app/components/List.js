@@ -89,17 +89,17 @@ export default class List extends React.Component{
               <div className="col-sm-4"> </div>
                 <div className="col-sm-4">
 
-                  <span className="list-group">
+                  
                     {buttonsarray.map(item => (
                       
-                        <button value={item} className="num-bg zero" id={item} onClick={this.concat}>{item}</button>
+                        <button value={item} className="num-bg zero " id={item} onClick={this.concat}>{item}</button>
                       
                     ))}
                     <button id="loginsubmit" className="num-bg" onClick={this.login}>Submit</button>
 
                     <button className="num-bg">Clear</button>
                   
-                  </span>
+                  
                 </div>
               <div className="col-sm-4"> </div>
 

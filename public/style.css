@@ -75,6 +75,7 @@
 
 }
 
+<<<<<<< HEAD
 /*.btn  {
 color:#FFFFFF;
 background-color:#9B9B9B;
@@ -91,6 +92,10 @@ height:75px;
 
 }*/
 
+=======
+
+
+>>>>>>> bd13b7d84c73f93a0819ad166ad26e16a1a4b2c4
 .leftBar {
 	background-color: #9B9B9B;
 	margin-top:-1%;
@@ -217,6 +222,23 @@ font-size:18px;
 
 
 
+.num-bg:nth-child(-n+3) {
+	margin-top:15%;
+}
+
+#loginsubmit {
+	background-color:#F5A623;
+}
+
+.error {
+	color:white;
+	text-align:center;
+	margin-top:5%;
+	text-transform:uppercase;
+	font-size:24px;
+}
+
+
 .num-bg {
 	background-color:white;
 	color:black;
@@ -238,13 +260,27 @@ font-size:18px;
 
 }
 
-.num-bg:nth-child(-n+3) {
-	margin-top:15%;
-}
 
-#loginsubmit {
-	background-color:#F5A623;
-}
+
+@media screen and (max-width:1280px) {
+
+	.num-bg {
+	background-color:white;
+	color:black;
+	opacity:0.8;
+	display: inline-block;
+	width: 125px;
+	height:100px;
+	padding:2%;
+	font-family: 'KalekoBold', sans-serif;
+	font-weight: bold;
+	font-size: 22px;
+	margin-bottom:5px;
+	border:none;
+	margin-right:2.5px;
+	margin-left:2.5px;
+	text-transform:uppercase;
+	line-height:4;
 
 @media screen and (max-width: 1280px) {
 	.num-bg {
@@ -267,6 +303,11 @@ font-size:18px;
 
 
 }
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> bd13b7d84c73f93a0819ad166ad26e16a1a4b2c4
 }
 
 

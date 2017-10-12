@@ -4,7 +4,7 @@ var logger = require("morgan");
 var mysql = require("mysql");
 
 var app = express();
-var PORT = process.env.PORT || 3000; 
+var PORT = process.env.PORT || 3000;
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -26,66 +26,71 @@ app.use(express.static("public"));
 // -------------------------------------------------
 
 app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
-  console.log("You are connected to mysql")
+    console.log("App listening on PORT: " + PORT);
+    console.log("You are connected to mysql")
 });
 
 var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "Sirniloc89",
-  database: "bev_db"
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "Sirniloc89",
+    database: "bev_db"
 });
 
 connection.connect(function(err) {
-  if (err) throw err;
+    if (err) throw err;
 });
 
 
-app.get("/getdrinks/:catg?", function(req,res){
-	console.log(req.body.drinks);
-	var dbQuery = "SELECT * FROM bev WHERE item_type = ?"
-	  connection.query(dbQuery,[req.params.catg], function(err, result) {
-	  	res.json(result);
-	  })
-	});
-
-app.get("/getprice/:drink", function(req,res){
-	console.log(req.params.drink);
-	var dbQuery = "SELECT price FROM bev WHERE item_name = ?"
-	  connection.query(dbQuery,[req.params.drink], function(err, result) {
-	  	res.json(result);
-	  })
-	});
-
-app.get("/getInventoryData/", function(req,res){
-  var dbQuery = "SELECT * FROM inventory"
-    connection.query(dbQuery, function(err, result) {
-      res.json(result);
+app.get("/getdrinks/:catg?", function(req, res) {
+    console.log(req.body.drinks);
+    var dbQuery = "SELECT * FROM bev WHERE item_type = ?"
+    connection.query(dbQuery, [req.params.catg], function(err, result) {
+        res.json(result);
     })
-  });
+});
+
+app.get("/getprice/:drink", function(req, res) {
+    console.log(req.params.drink);
+    var dbQuery = "SELECT price FROM bev WHERE item_name = ?"
+    connection.query(dbQuery, [req.params.drink], function(err, result) {
+        res.json(result);
+    })
+});
+
+app.get("/getInventoryData/", function(req, res) {
+    var dbQuery = "SELECT * FROM inventory"
+    connection.query(dbQuery, function(err, result) {
+        res.json(result);
+    })
+});
+
+app.post("/manipulateInventoryData/", function(req, res) {
+    var dbQuery = "UPDATE sales (count, drinks, price) VALUES "
+    connection.query(dbQuery, function(err, result) {
+        res.json(result);
+    })
+});
 
 
 
-app.get("/login/:emp_no", function(req,res){
+app.get("/login/:emp_no", function(req, res) {
 
 
-  var dbQuery = "SELECT * FROM users WHERE emp_no = ?"
-    connection.query(dbQuery,[req.params.emp_no], function(err, result) {
-      if(result.length > 0){
-        res.json(result[0]);
-      }
-      else{
-        res.status(404).send('Employee Not found');     
-      }
-   
-      
+    var dbQuery = "SELECT * FROM users WHERE emp_no = ?"
+    connection.query(dbQuery, [req.params.emp_no], function(err, result) {
+        if (result.length > 0) {
+            res.json(result[0]);
+        } else {
+            res.status(404).send('Employee Not found');
+        }
+
+
     });
 
 });
 
 app.get("*", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+    res.sendFile(__dirname + "/public/index.html");
 });
-

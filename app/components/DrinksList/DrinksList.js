@@ -15,10 +15,7 @@ export default class DrinksList extends Component {
 		super(props);
 
 		console.log(this.props.price);
-		// this.state = {
-		// 	drinkList: this.props.drinks
-		// };
-
+	
 		this.handleClick = this.handleClick.bind(this);
 	}
 

@@ -9,7 +9,6 @@ const styles ={
 	},
 };
 
-
 export default class Summary extends Component {
 
 	constructor(props) {
@@ -23,17 +22,12 @@ export default class Summary extends Component {
 			price: this.props.price
 		}
 		this.total = 0;
-		// this.handleClearBtn = this.handleClearBtn.bind(this);
+		this.submitBtn = this.submitBtn.bind(this);
 	}
 
-	// componentWillReceiveProps(nextProps) {
-
-	// }
-
-	// handleClearBtn(){
-	// 	console.log('clicked');
-	// 	this.setState({total: 0});
-	// }
+	submitBtn(event){
+		console.log('submitBtn');
+	}
 	
 	render(){
 		let totalBeforeTax = 0;
@@ -92,20 +86,12 @@ export default class Summary extends Component {
 							<h5>Tax(8.25%)</h5>
 						</div> : null}
 
-						{/*<div className="col-md-4">
-													<h5>Tax(8.25%)</h5>
-												</div>*/}
-
 						<div className="col-md-2"> 
 						</div>
 
-						{tax.length > 0 ? <div className="col-md-4">
-							<h5>Tax(8.25%)</h5>
+						{tax > 0 ? <div className="col-md-2">
+							<h5>{`$${tax.toFixed(2)}`}</h5>
 						</div> : null}
-
-						{/*<div className="col-md-2">
-													<h5>{`$${tax.toFixed(2)}`}</h5>
-												</div>*/}
 
 					</div>
 
@@ -130,7 +116,7 @@ export default class Summary extends Component {
 					<div className="row">
 					
 							<button className="btn btn-warning" style={styles.operations} onClick={this.props.clear}>CLEAR</button>
-							<button className="btn btn-warning" style={styles.operations}>SUBMIT</button>
+							<button className="btn btn-warning" style={styles.operations} onClick={this.submitBtn}>SUBMIT</button>
 					</div>
 						
 

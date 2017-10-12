@@ -119,11 +119,14 @@ export default class Categories extends Component {
 		let ordersummary;
 		if(this.state.results){
 
-			list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
+
+			//list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
+			//ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
+
+			//list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
 			ordersummary = <Summary clear={this.clearBtn} drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
+
 		}
-
-
 
 		return(
 		<div>
@@ -134,10 +137,16 @@ export default class Categories extends Component {
 
 					<div className="row">
 						<div className="col-md-12">
+
+						<div id="gray">
+								<img id="photo" src={this.props.image} />
+								<h4 id="userName"> {this.props.name}</h4>
+							</div>
+
 							{categories.map((item) => (
 							<div><button className="btn" id={item} style={styles.button} onClick={this.handleClick} >{item}</button></div>
 							))}
-							<button className="btn btn-warning" style={styles.button} onClick={this.props.logout}>LOGOUT</button>
+							<button className="btn3" style={styles.button} onClick={this.props.logout}>LOGOUT</button>
 						</div>
 					</div>
 				</div>

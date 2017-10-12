@@ -84,7 +84,8 @@ export default class List extends React.Component{
 
           <h1 id="navBar"> bartap </h1>
 
-              <strong>{this.state.error}</strong>
+            <div className="error"> <strong>{this.state.error}</strong> </div>
+
             <div className="row">
               <div className="col-sm-4"> </div>
                 <div className="col-sm-4">
@@ -104,7 +105,7 @@ export default class List extends React.Component{
               <div className="col-sm-4"> </div>
 
             </div>
-            <strong>{this.state.error}</strong>
+            
 
         </div>
 

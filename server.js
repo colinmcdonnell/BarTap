@@ -126,6 +126,13 @@ app.get("/getInventoryData/", function(req, res) {
     })
 });
 
+app.get("/sales", function(req, res) {
+    var dbQuery = "select sum(units_sold)as units_sold, item_name from sales group by item_name; "
+    connection.query(dbQuery, function(err, result) {
+        res.json(result);
+    })
+});
+
 app.post("/updateSales", function(req, res) {
     console.log("drink_name" +  req.body.item_name);
     console.log("drink_count" +  req.body.count);

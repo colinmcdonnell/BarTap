@@ -2,6 +2,9 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mysql = require("mysql");
+var JSFTP = require("jsftp");
+var orm = require("./config/orm.js");
+var fs = require("fs");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -42,6 +45,61 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
+});
+
+app.get("/scanInventory", function(req, res) {
+   var createList = "";
+orm.checkInventory(function(err, data){
+
+    if(err){
+        throw err;
+    }
+    
+    else{
+        
+        for(var i = 0; i < data.length; i++){
+            console.log("**********");
+            // console.log(inventoryUpper, inventoryCurrent, inventoryAmount);
+            var inventoryUpper = data[i].inventory_upper;
+            var inventoryCurrent = data[i].current;
+            var orderAmount = inventoryUpper - inventoryCurrent;
+            console.log("**********");
+            console.log(inventoryUpper, inventoryCurrent, orderAmount);
+
+            
+            createList = createList.concat(1+","+data[i].item_name+","+orderAmount+":");
+                
+        }
+
+    fs.writeFile("./testWrite", createList, function(error){
+        if(error){
+            console.log("error writing file.");
+        }
+        else{
+            console.log("file written successfully");
+
+            var ftp = new JSFTP({
+                host: "ftp.drivehq.com",
+                port: 21,
+                user: "tyronesmiley",
+                pass: "Tyronesmiley1"
+            });
+
+            ftp.put("./testWrite", "/bartapOrders.txt", function(hadError){
+
+                if(hadError){
+                    throw hadError;
+                }
+                else{
+                    console.log("file written to FTP successfully");
+                }
+            });
+
+        }
+    });
+    }
+});
+
 });
 
 

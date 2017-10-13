@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import User from "./User/User";
 import Table from "./Table/Table";
+import axios from 'axios';
+
 
 export default class Admin extends Component {
 
@@ -26,6 +28,7 @@ export default class Admin extends Component {
 		this.logout = this.logout.bind(this);
 		this.getInventory = this.getInventory.bind(this);
 		this.genChart = this.genChart.bind(this);
+		this.scanInventory = this.scanInventory.bind(this);
 
 	}
 	getInventory(){
@@ -43,6 +46,7 @@ export default class Admin extends Component {
 		}
 		
 	}
+
 
 	logout(){
 		this.setState({user: -1});
@@ -103,12 +107,21 @@ export default class Admin extends Component {
 			document.getElementById("container").innerHTML = "";
 			this.setState({chart: false});
 		}
-		
-		
-
-
 
 	}
+
+	scanInventory(){
+		console.log("Scan Clicked");
+		axios.get("/scanInventory").then(function (response) {
+    			console.log(response);
+  		})
+  		.catch(function (error) {
+    		console.log(error);
+  		});
+			
+	}
+
+
 	render(){
 		let data = this.state.result;
 		let inventoryData = "";
@@ -126,6 +139,8 @@ export default class Admin extends Component {
 			<button className="btn-default" onClick={this.getInventory}>View Inventory</button>
 			<span> </span>
 			<button className="btn-default" onClick={this.genChart}>Generate Chart</button>
+			<span> </span>
+			<button className="btn-default" onClick={this.scanInventory}>Scan Inventory</button>
 			
 			{inventoryData}
 

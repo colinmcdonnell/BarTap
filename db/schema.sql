@@ -38,7 +38,6 @@ PRIMARY KEY (id)
 CREATE TABLE sales (
 id int NOT NULL AUTO_INCREMENT,
 item_name varchar(255) NOT NULL,
-type varchar(255) NOT NULL,
 units_sold int(10) NOT NULL,
 PRIMARY KEY (id)
 );

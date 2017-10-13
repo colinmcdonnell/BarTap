@@ -62,7 +62,7 @@ export default class Admin extends Component {
 					}
 				},
 				title: {
-					text: 'Browser market shares at a specific website, 2014'
+					text: 'Top product type sales'
 				},
 				tooltip: {
 					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -82,17 +82,18 @@ export default class Admin extends Component {
 					type: 'pie',
 					name: 'Browser share',
 					data: [
-					['Firefox', 45.0],
-					['IE', 26.8],
+					['Vodka', 20.0],
+					['Beer', 25.0],
+					['Whiskey', 26.8],
 					{
-						name: 'Chrome',
+						name: 'Tequila',
 						y: 12.8,
 						sliced: true,
 						selected: true
 					},
-					['Safari', 8.5],
-					['Opera', 6.2],
-					['Others', 0.7]
+					['Rum', 8.5],
+					['Gin', 6.2],
+					['Cordials', 0.7]
 					]
 				}]
 			});	  

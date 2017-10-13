@@ -68,12 +68,15 @@ app.get("/getInventoryData/", function(req, res) {
     })
 });
 
-app.post("/manipulateInventoryData/", function(req, res) {
-    var dbQuery = "UPDATE sales (count, drinks, price) VALUES "
-    connection.query(dbQuery, function(err, result) {
+app.post("/updateSales", function(req, res) {
+    console.log("drink_name" +  req.body.item_name);
+    console.log("drink_count" +  req.body.count);
+    var dbQuery = "INSERT INTO sales (units_sold, item_name) VALUES (?,?)"
+    connection.query(dbQuery, [req.body.count, req.body.item_name], function(err, result) {
         res.json(result);
     })
 });
+
 
 app.get("/login/:emp_no", function(req, res) {
 
@@ -98,8 +101,8 @@ app.post("/updateInventory", function(req, res){
 console.log("units: "+ units);
 
   let decVal = count * units;
-  console.log("decval: "+ decVal);
-  console.log("item_name"+ item_name);
+  // console.log("decval: "+ decVal);
+  // console.log("item_name"+ item_name);
   var dbQuery = "UPDATE inventory SET current=(current - ?) WHERE item_name=?"
   connection.query(dbQuery, [decVal, item_name], function(err, result) {
         res.json(result);

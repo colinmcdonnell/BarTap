@@ -33,7 +33,7 @@ export default class Summary extends Component {
 		let price = this.props.price;
 		let units = this.props.unit;
 		for(let i=0;i<drinks.length;i++){
-			
+			axios.post("/updateSales" , {item_name: drinks[i], count: count[i]});
 			axios.post("/updateInventory" , {item_name: drinks[i], count: count[i], unit: units[i]});
 			this.props.clear();
 		}

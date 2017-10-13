@@ -9,8 +9,6 @@
 	padding-bottom:8px;
 	margin-top:-0.1%;
 	line-height:2;
-
-
 }
 
 #gray {
@@ -61,8 +59,6 @@
 	display: block;
 	border-radius:50%;
 	border: 2px solid white;
-
-
 }
 
 #userName {
@@ -72,30 +68,8 @@
 	color:#F5A623;
 	font-family:'TradeGothic', sans-serif;
 	font-weight:bold;
-
 }
 
-<<<<<<< HEAD
-/*.btn  {
-color:#FFFFFF;
-background-color:#9B9B9B;
-font-family:'TradeGothic', sans-serif;
-font-weight:bold;
-text-transform:uppercase;
-letter-spacing:1px;
-font-size:18px;
-border-bottom:1px solid white;
-border-top: 1px solid white;
-width:100%;
-height:75px;
-
-
-}*/
-
-=======
-
-
->>>>>>> bd13b7d84c73f93a0819ad166ad26e16a1a4b2c4
 .leftBar {
 	background-color: #9B9B9B;
 	margin-top:-1%;
@@ -108,8 +82,6 @@ height:75px;
 	float:left;
 	display:inline-block;
 	margin-left:10%;
-
-
 }
 
 #userName {
@@ -119,22 +91,20 @@ height:75px;
 	color:#F5A623;
 	font-family:'TradeGothic', sans-serif;
 	font-weight:bold;
-
 }
 
 .btn  {
-color:#FFFFFF;
-background-color:#9B9B9B;
-font-family:'TradeGothic', sans-serif;
-font-weight:bold;
-text-transform:uppercase;
-letter-spacing:1px;
-font-size:18px;
-border-bottom:1px solid white;
-border-top: 1px solid white;
-width:100%;
-height: 85px;
-
+	color:#FFFFFF;
+	background-color:#9B9B9B;
+	font-family:'TradeGothic', sans-serif;
+	font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	font-size:18px;
+	border-bottom:1px solid white;
+	border-top: 1px solid white;
+	width:100%;
+	height: 85px;
 }
 
 .drinks:nth-child(odd) {
@@ -152,28 +122,26 @@ height: 85px;
 }
 
 .btn3 {
-color:#FFFFFF;
-background-color:#F5A623;
-font-family:'TradeGothic', sans-serif;
-font-weight:bold;
-text-transform:uppercase;
-letter-spacing:1px;
-font-size:18px;
-width:100%;
-height:100px;
-border:none;
-
+	color:#FFFFFF;
+	background-color:#F5A623;
+	font-family:'TradeGothic', sans-serif;
+	font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	font-size:18px;
+	width:100%;
+	height:100px;
+	border:none;
 }
 
 .drinkButton{
-color:#FFFFFF;
-background-color:#9B9B9B;
-font-family:'TradeGothic', sans-serif;
-font-weight:bold;
-text-transform:uppercase;
-letter-spacing:1px;
-font-size:18px;
-
+	color:#FFFFFF;
+	background-color:#9B9B9B;
+	font-family:'TradeGothic', sans-serif;
+	font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	font-size:18px;
 }
 
 #orderSum {
@@ -184,8 +152,7 @@ font-size:18px;
 	text-transform:uppercase;
 	background-color: #4A4A4A;
 	font-size:18px;
-	padding: 1%;
-	
+	padding: 1%;	
 }
 
 .sumBox {
@@ -217,7 +184,6 @@ font-size:18px;
 
 .cover {
 	height:800px;
-
 }
 
 
@@ -277,13 +243,6 @@ font-size:18px;
 	margin-left:2.5px;
 	text-transform:uppercase;
 	line-height:2;
-
-
 }
-
-
-
-
-
-
+}
 

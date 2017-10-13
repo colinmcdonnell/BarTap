@@ -17,6 +17,7 @@ export default class Admin extends Component {
 			data: [],
 			result: false,
 			toggle: false,
+			chart: false,
 		}
 		if(this.props.location.state == null){
 			browserHistory.push("/");
@@ -24,6 +25,8 @@ export default class Admin extends Component {
 		
 		this.logout = this.logout.bind(this);
 		this.getInventory = this.getInventory.bind(this);
+		this.genChart = this.genChart.bind(this);
+
 	}
 	getInventory(){
 		if(this.state.result === true){
@@ -31,19 +34,80 @@ export default class Admin extends Component {
 				result: false});
 		}
 		else {
-		fetch('/getInventoryData/').then(function(response){
-			return response.json();
-		}).then(data => {
-			this.setState({data: data,
-				result: true});
-		});
-	}
+			fetch('/getInventoryData/').then(function(response){
+				return response.json();
+			}).then(data => {
+				this.setState({data: data,
+					result: true});
+			});
+		}
 		
 	}
 
 	logout(){
 		this.setState({user: -1});
 		browserHistory.push("/");
+	}
+
+	genChart(){
+		console.log(this.state.chart);
+		if(this.state.chart === false){
+			Highcharts.chart('container', {
+				chart: {
+					type: 'pie',
+					options3d: {
+						enabled: true,
+						alpha: 45,
+						beta: 0
+					}
+				},
+				title: {
+					text: 'Browser market shares at a specific website, 2014'
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						depth: 35,
+						dataLabels: {
+							enabled: true,
+							format: '{point.name}'
+						}
+					}
+				},
+				series: [{
+					type: 'pie',
+					name: 'Browser share',
+					data: [
+					['Firefox', 45.0],
+					['IE', 26.8],
+					{
+						name: 'Chrome',
+						y: 12.8,
+						sliced: true,
+						selected: true
+					},
+					['Safari', 8.5],
+					['Opera', 6.2],
+					['Others', 0.7]
+					]
+				}]
+			});	  
+			this.setState({chart: true});
+
+		}
+		else {
+			document.getElementById("container").innerHTML = "";
+			this.setState({chart: false});
+		}
+		
+		
+
+
+
 	}
 	render(){
 		let data = this.state.result;
@@ -61,9 +125,14 @@ export default class Admin extends Component {
 			<div><br/></div>
 			<button className="btn-default" onClick={this.getInventory}>View Inventory</button>
 			<span> </span>
-			<button className="btn-default">Order Low Inventory</button>
+			<button className="btn-default" onClick={this.genChart}>Generate Chart</button>
 			
 			{inventoryData}
+
+			<div id="container"></div>
+
+
+
 			</div>
 			)
 	}

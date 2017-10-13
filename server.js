@@ -35,7 +35,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "lindsaysql",
+  password: "password",
   database: "bev_db"
 
 });
@@ -55,7 +55,7 @@ app.get("/getdrinks/:catg?", function(req, res) {
 
 app.get("/getprice/:drink", function(req, res) {
     console.log(req.params.drink);
-    var dbQuery = "SELECT price FROM bev WHERE item_name = ?"
+    var dbQuery = "SELECT * FROM bev WHERE item_name = ?"
     connection.query(dbQuery, [req.params.drink], function(err, result) {
         res.json(result);
     })
@@ -90,6 +90,24 @@ app.get("/login/:emp_no", function(req, res) {
     });
 
 });
+
+app.post("/updateInventory", function(req, res){
+  let item_name = req.body.item_name;
+  let count = req.body.count;
+  let units = req.body.unit;
+
+
+  let decVal = parseInt(count) * parseInt(units);
+  console.log("decval: "+ decVal);
+  console.log("item_name"+ item_name);
+  var dbQuery = "UPDATE inventory SET current=(current - ?) WHERE item_name=?"
+  connection.query(dbQuery, [decVal, item_name], function(err, result) {
+        res.json(result);
+
+    });
+    
+});
+
 
 app.get("*", function(req, res) {
     res.sendFile(__dirname + "/public/index.html");

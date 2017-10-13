@@ -34,6 +34,7 @@ export default class Categories extends Component {
 			results: false,
 			count: [],
 			drink: [],
+			units: [],
 		};
 		
 		this.handleClick = this.handleClick.bind(this);
@@ -83,15 +84,17 @@ export default class Categories extends Component {
 		fetch('/getprice/' + item).then(function(response){
 			return response.json();
 		}).then(data => {
-
-
 			let arrPrice = this.state.drinkPrice;
-
 			
 			let index = this.state.drink.indexOf(item);
 				arrPrice[index] = data[0].price;
 			
 			this.setState({drinkPrice: arrPrice});
+
+			let arrUnits = this.state.units;
+				arrUnits[index] = data[0].unit;
+			this.setState({units: arrUnits});
+
 
 		});
 
@@ -119,12 +122,7 @@ export default class Categories extends Component {
 		let ordersummary;
 		if(this.state.results){
 
-
-			//list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
-			//ordersummary = <Summary drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
-
-			//list = <DrinksList drinks={this.state.drinkList} price={this.state.drinkPrice} unit={this.state.drinkUnit} />
-			ordersummary = <Summary clear={this.clearBtn} drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice}/>
+			ordersummary = <Summary clear={this.clearBtn} drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice} unit={this.state.units}/>
 
 		}
 

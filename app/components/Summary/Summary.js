@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 const styles ={ 
 	
@@ -19,14 +20,24 @@ export default class Summary extends Component {
 			totalBeforeTax: 0,
 			drinks: this.props.drink,
 			count: this.props.count,
-			price: this.props.price
+			price: this.props.price,
+			drinksUnit : this.props.unit,
 		}
 		this.total = 0;
 		this.submitBtn = this.submitBtn.bind(this);
 	}
 
 	submitBtn(event){
-		console.log('submitBtn');
+		let drinks = this.props.drink;
+		let count = this.props.count;
+		let price = this.props.price;
+		let units = this.props.unit;
+		for(let i=0;i<drinks.length;i++){
+			
+			axios.post("/updateInventory" , {item_name: drinks[i], count: count[i], unit: units[i]});
+			this.props.clear();
+		}
+
 	}
 	
 	render(){
@@ -37,7 +48,7 @@ export default class Summary extends Component {
 		let drinks = this.props.drink;
 		let count = this.props.count;
 		let price = this.props.price;
-
+		let units = this.props.unit;
 
 		
 		for(let i=0; i<count.length; i++){
@@ -118,7 +129,7 @@ return(
 
 								<button className="orderBtn" onClick={this.props.clear}>CLEAR</button> 
 								<span> </span>
-								<button className="orderBtn">SUBMIT</button> <br /> <br />
+								<button className="orderBtn" onClick={this.submitBtn}>SUBMIT</button> <br /> <br />
 						</div>
 						</div>
 						);

@@ -105,4 +105,12 @@ VALUES
 ("stolichnaya", 5, "vodka", 600, 600, 200),
 ("kettle one", 6, "vodka", 600, 600, 200),
 ("grey goosea", 7, "vodka", 600, 600, 200),
-("belvedere", 8, "vodka", 600, 600, 200)
+("belvedere", 8, "vodka", 600, 600, 200),
+('captain morgan',9, 'rum', 600, 600,200),
+('malibu',10, 'rum', 600, 600,200),
+('bacardi',11, 'rum', 600, 600, 200),
+('cruzan',12, 'rum', 600, 600,200),
+('don q',13, 'rum', 700, 600,200),
+('mount gay',14, 'rum', 700,700,200),
+('brugal',15, 'rum', 700, 700,200),
+('meyers',16, 'rum', 700,700, 200),

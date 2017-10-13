@@ -29,7 +29,7 @@ id int NOT NULL AUTO_INCREMENT,
 item_name varchar(255) NOT NULL,
 item_id varchar(255) NOT NULL,
 type varchar(255) NOT NULL,
-current int(10) NOT NULL,
+current decimal(10,2) NOT NULL,
 inventory_upper int(10) NOT NULL,
 inventory_lower int(10) NOT NULL,
 PRIMARY KEY (id)

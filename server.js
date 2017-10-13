@@ -95,9 +95,9 @@ app.post("/updateInventory", function(req, res){
   let item_name = req.body.item_name;
   let count = req.body.count;
   let units = req.body.unit;
+console.log("units: "+ units);
 
-
-  let decVal = parseInt(count) * parseInt(units);
+  let decVal = count * units;
   console.log("decval: "+ decVal);
   console.log("item_name"+ item_name);
   var dbQuery = "UPDATE inventory SET current=(current - ?) WHERE item_name=?"

@@ -22,6 +22,7 @@ export default class Summary extends Component {
 			count: this.props.count,
 			price: this.props.price,
 			drinksUnit : this.props.unit,
+			name: this.props.name
 		}
 		this.total = 0;
 		this.submitBtn = this.submitBtn.bind(this);
@@ -32,8 +33,10 @@ export default class Summary extends Component {
 		let count = this.props.count;
 		let price = this.props.price;
 		let units = this.props.unit;
+		let name = this.props.name;
+		console.log("Name "+name);
 		for(let i=0;i<drinks.length;i++){
-			axios.post("/updateSales" , {item_name: drinks[i], count: count[i]});
+			axios.post("/updateSales" , {item_name: drinks[i], count: count[i], price: price[i],unit:units[i],name:name});
 			axios.post("/updateInventory" , {item_name: drinks[i], count: count[i], unit: units[i]});
 			this.props.clear();
 		}

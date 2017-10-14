@@ -74,7 +74,7 @@ export default class Admin extends Component {
 			for (var i = 0; i < response.data.length; i++) {
 				let tempArr = [];
 				let item_name = response.data[i].item_name;
-				let units_sold = response.data[i].units_sold;
+				let units_sold = response.data[i].count;
 				tempArr.push(item_name);
 				tempArr.push(units_sold);
 				console.log("temparr : "+ tempArr);

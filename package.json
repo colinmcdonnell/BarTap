@@ -25,9 +25,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack && node server.js",
+    "start": "node server.js",
     "build": "webpack -w",
-    "dev": "webpack & node server.js"
+    "dev": "webpack & node server.js",
+    "postinstall": "webpack -p"
   },
   "author": "",
   "license": "ISC"

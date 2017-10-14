@@ -249,42 +249,45 @@ export default class Admin extends Component {
 		let bartenderDisplay = this.state.bartender? <div id="bartender"></div> : "";
 		
 		return(
-			<div>
-			<div className="row">
-                <div className="col-md-12">
-                    <h1 id="navBar"> admin bartap </h1>
-                </div>
-                <div className="row">        
-                    <div className="col-md-4">
-                        <div id="btn">
-                            <img id="photo" src={this.state.image}/>
-                            
-                            <h4 id="userName">{this.state.name}</h4>
-                        </div>
-                    </div>
-                
-                    
-                </div>
-            </div> 
-            <div className="row">
-                <div className="col-md-4">
-                    <button className="btn" onClick={this.getInventory}>View Inventory</button>
-                    <button className="btn" onClick={this.genChart}>Generate Chart</button>
-                    <button className="btn" onClick={this.bartenderChart}>Generate Bartender Sales</button>
-					<button className="btn" onClick={this.scanInventory}>Scan Inventory</button>
-					<button className="btn" onClick={this.importInventory}>import Inventory</button>
-                    <button id="logout" className="btn3"  onClick={this.logout}>Logout</button>
-                </div>
-                <div className ="col-md-6">
-                {inventoryData}
-                <h2>{scanMessage}</h2>
-                <h2>{importMessage}</h2>
-                {chartDisplay}
-                {bartenderDisplay}
-                </div>
+		<div>
+			
+               <h1 id="navBar"> admin bartap </h1>
 
-            </div>
-			</div>
+              	 <div className="row">
+
+               		<div className="col-md-4">
+                
+                		<div className="row">        
+                    		<div className="col-md-12">
+
+	                        	<div id="gray">
+	                            	<img id="photo" src={this.state.image}/> 
+	                           		<h4 id="userName">{this.state.name}</h4>
+	                  			</div>
+                    
+
+			                    <button className="btn" onClick={this.getInventory}>View Inventory</button>
+			                    <button className="btn" onClick={this.genChart}>Generate Chart</button>
+			                    <button className="btn" onClick={this.bartenderChart}>Generate Bartender Sales</button>
+								<button className="btn" onClick={this.scanInventory}>Scan Inventory</button>
+								<button className="btn" onClick={this.importInventory}>import Inventory</button>
+			                    <button id="logout" className="btn3"  onClick={this.logout}>Logout</button>
+			                </div>
+			            </div>
+			        </div>
+
+	                
+
+	                <div className ="col-md-8">
+	                	{inventoryData}
+	                	<h2>{scanMessage}</h2>
+	                	<h2>{importMessage}</h2>
+	                	{chartDisplay}
+	                	{bartenderDisplay}
+	                </div>
+
+            	</div>
+		</div>
 			)
 	}
 }

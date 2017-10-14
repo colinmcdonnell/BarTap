@@ -21,6 +21,7 @@ CREATE TABLE users
 	emp_no varchar(25) NOT NULL,
 	name varchar(255) NOT NULL,
 	image varchar(255) NOT NULL,
+	createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
 
@@ -32,6 +33,7 @@ type varchar(255) NOT NULL,
 current decimal(10,2) NOT NULL,
 inventory_upper int(10) NOT NULL,
 inventory_lower int(10) NOT NULL,
+createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (id)
 );
 
@@ -42,6 +44,7 @@ count int(10) NOT NULL,
 price_per_unit decimal(10) NOT NULL,
 units int(10) NOT NULL,
 user varchar(255) NOT NULL,
+createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 primary KEY (id)
 );
 

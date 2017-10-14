@@ -21,6 +21,7 @@ export default class Admin extends Component {
 			chart: false,
 			scan: false,
 			imported : false,
+			bartender: false,
 		}
 		if(this.props.location.state == null){
 			browserHistory.push("/");
@@ -64,6 +65,13 @@ export default class Admin extends Component {
 	}
 
 	bartenderChart(){
+		this.setState({chart: false});
+		this.setState({scan: false});
+		this.setState({imported: false});
+		this.setState({data: [],
+				result: false});
+		if(this.state.bartender===false){
+
 		var userarray = ["Colin","AK"];
 		var user1 = 0;
 		var user2 = 0;
@@ -99,12 +107,19 @@ export default class Admin extends Component {
 				  title: 'Sales by Bartender in $',
 					};
 
+				
+					Plotly.newPlot('bartender', data, layout);
 
-				Plotly.newPlot('bartender', data, layout);
+				
 
 			
 			});
 		}
+		this.setState({bartender: true});
+	} else{
+		document.getElementById("bartender").innerHTML = "";
+		this.setState({bartender: false});
+	}
 		
 		
 
@@ -118,6 +133,7 @@ export default class Admin extends Component {
 				result: false});
 		this.setState({scan: false});
 		this.setState({imported: false});
+		this.setState({bartender: false});
 
 		if(this.state.chart === false){
 			axios.get('/sales')
@@ -169,7 +185,7 @@ export default class Admin extends Component {
 				},
 				series: [{
 					type: 'pie',
-					name: 'Sales',
+					name: '<Sales></Sales>',
 					data: salesData
 				}]
 			});	
@@ -199,6 +215,8 @@ export default class Admin extends Component {
 		this.setState({chart: false});
 		this.setState({scan: true});
 		this.setState({imported: false});
+		this.setState({bartender: false});
+
 		axios.get("/scanInventory").then(function (response) {
     			console.log(response);
 
@@ -214,6 +232,7 @@ export default class Admin extends Component {
 				result: false});
 		this.setState({chart: false});
 		this.setState({imported: true});
+		this.setState({bartender: false});
 		axios.get("/importInventory").then(function (response) {
     			console.log(response);
   		})
@@ -229,6 +248,10 @@ export default class Admin extends Component {
 		let scanMessage ="";
 		let importCheck = this.state.imported;
 		let importMessage ="";
+		let chartCheck = this.state.chart;
+		let chartDisplay ="";
+		let bartenderCheck = this.state.bartender;
+		let bartenderDisplay ="";
 		if(data){
 			inventoryData = <Table data={this.state.data} />
 		}
@@ -245,6 +268,18 @@ export default class Admin extends Component {
 			importMessage = "";
 		}
 
+		if(chartCheck) {
+			chartDisplay = <div id="container"></div>
+		}
+		else {
+			chartDisplay = "";
+		}
+		if(bartenderCheck) {
+			bartenderDisplay = <div id="bartender"></div>
+		}
+		else {
+			bartenderDisplay = "";
+		}
 		
 		
 
@@ -282,8 +317,8 @@ export default class Admin extends Component {
                 {inventoryData}
                 <h2>{scanMessage}</h2>
                 <h2>{importMessage}</h2>
-                <div id="container"></div>
-                <div id="bartender"></div>
+                {chartDisplay}
+                {bartenderDisplay}
                 </div>
 
             </div>

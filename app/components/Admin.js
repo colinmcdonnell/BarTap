@@ -242,20 +242,11 @@ export default class Admin extends Component {
 	}
 
 	render(){
-		let data = this.state.result;
-		let inventoryData = "";
-		
-		if(data){
-			inventoryData = <Table data={this.state.data} />
-		}
-
+		let inventoryData = this.state.result? <Table data={this.state.data} /> : "";
 		let scanMessage = this.state.scan? "Inventory Scanned!" : "";
 		let importMessage = this.state.imported? "Inventory Imported!" : "";
 		let chartDisplay = this.state.chart? <div id="container"></div> : "";
 		let bartenderDisplay = this.state.bartender? <div id="bartender"></div> : "";
-		
-		
-
 		
 		return(
 			<div>

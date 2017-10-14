@@ -102,40 +102,11 @@ export default class Admin extends Component {
 
 				Plotly.newPlot('bartender', data, layout);
 
-				// Highcharts.chart('bartender', {
-			 //        chart: {
-			 //            type: 'bar'
-			 //        },
-			 //        title: {
-			 //            text: 'Sales by Bartender'
-			 //        },
-			 //        xAxis: {
-			 //            categories: ['Bartenders']
-			 //        },
-			 //        yAxis: {
-			 //            title: {
-			 //                text: 'Sales in Dollars'
-			 //            }
-			 //        },
-			 //        series: [{
-			 //            name: userarray[0],
-			 //            data: user1
-			 //        }, {
-			 //            name: userarray[1],
-			 //            data: user2
-			 //        }]
-			 //    });
-		
+			
 			});
 		}
 		
 		
-		
-		
-		
-
-		// Plotly.newPlot('bartender', data);
-
 
 		
 		
@@ -198,7 +169,7 @@ export default class Admin extends Component {
 				},
 				series: [{
 					type: 'pie',
-					name: 'Browser share',
+					name: 'Sales',
 					data: salesData
 				}]
 			});	
@@ -302,6 +273,7 @@ export default class Admin extends Component {
                 <div className="col-md-4">
                     <button className="btn" onClick={this.getInventory}>View Inventory</button>
                     <button className="btn" onClick={this.genChart}>Generate Chart</button>
+                    <button className="btn" onClick={this.bartenderChart}>Generate Bartender Sales</button>
 					<button className="btn" onClick={this.scanInventory}>Scan Inventory</button>
 					<button className="btn" onClick={this.importInventory}>import Inventory</button>
                     <button id="logout" className="btn3"  onClick={this.logout}>Logout</button>
@@ -311,6 +283,7 @@ export default class Admin extends Component {
                 <h2>{scanMessage}</h2>
                 <h2>{importMessage}</h2>
                 <div id="container"></div>
+                <div id="bartender"></div>
                 </div>
 
             </div>

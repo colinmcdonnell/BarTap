@@ -45,8 +45,6 @@ user varchar(255) NOT NULL,
 primary KEY (id)
 );
 
-PRIMARY KEY (id)
-);
 
 CREATE TABLE invoice (
 id int NOT NULL AUTO_INCREMENT,

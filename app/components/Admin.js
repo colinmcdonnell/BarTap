@@ -244,46 +244,17 @@ export default class Admin extends Component {
 	render(){
 		let data = this.state.result;
 		let inventoryData = "";
-		let scanCheck = this.state.scan;
-		let scanMessage ="";
-		let importCheck = this.state.imported;
-		let importMessage ="";
-		let chartCheck = this.state.chart;
-		let chartDisplay ="";
-		let bartenderCheck = this.state.bartender;
-		let bartenderDisplay ="";
+		
 		if(data){
 			inventoryData = <Table data={this.state.data} />
 		}
 
-
-		if(scanCheck){
-			scanMessage = "Inventory Scanned!";
-		} else {
-			scanMessage = "";
-		}
-		if(importCheck){
-			importMessage = "Inventory Imported!";
-		} else {
-			importMessage = "";
-		}
-
-		if(chartCheck) {
-			chartDisplay = <div id="container"></div>
-		}
-		else {
-			chartDisplay = "";
-		}
-		if(bartenderCheck) {
-			bartenderDisplay = <div id="bartender"></div>
-		}
-		else {
-			bartenderDisplay = "";
-		}
+		let scanMessage = this.state.scan? "Inventory Scanned!" : "";
+		let importMessage = this.state.imported? "Inventory Imported!" : "";
+		let chartDisplay = this.state.chart? <div id="container"></div> : "";
+		let bartenderDisplay = this.state.bartender? <div id="bartender"></div> : "";
 		
 		
-
-
 
 		
 		return(

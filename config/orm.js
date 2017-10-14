@@ -34,28 +34,7 @@ var orm = {
 
 	},
 
-	addOrder: function(order_id, item_name, order_qty, cb){
-		var queryString = "insert into orders (order_id, item_name, order_qty) " +
-						  " values (?,?,?) ";
-		  	if(typeof order_id != "number"){
-		  		console.log(order_id)
-		  		order_id = parseInt(order_id);
-		  	}
-		  	if(typeof order_qty != "number"){
-		  		console.log(order_qty);
-		  		order_qty = parseInt(order_qty);
-		  	}
-
-		  	mysqlConnection.query(queryString, [order_id, item_name, order_qty], function(err, result){
-	  			if(err){
-	  				throw err;
-	  			}
-	  			console.log(result);
-	  			cb(err,"***");
-		  	});
-
-	},
-
+	
 	checkInventory: function(cb){
 		var queryString = "select item_name, inventory_upper, current " +
 						  "from inventory " +
@@ -69,6 +48,16 @@ var orm = {
 	  			cb(null, result);
 	  		}
 	  	});
+	  	 var queryStringTwo = "insert into invoice  (sent, received) "+
+                             "values ('1', '0')";
+         mysqlConnection.query(queryStringTwo, function(err, result){
+             if(err){
+                 throw err;
+             }
+             else{
+                 console.log("Invoice insert works.");
+             }
+         });
 
 	},
 
@@ -80,7 +69,7 @@ var orm = {
 		  		order_qty = parseInt(order_qty);
 		  	}
 		var queryString = "update inventory "+
-						  "set inventory_current = inventory_current + ? "+
+						  "set current = current + ? "+
 					  	  "where item_name = ?";
 		  	//   if(typeof order_qty != "number"){
 		  	// 	console.log(order_qty);
@@ -94,8 +83,57 @@ var orm = {
   	  			console.log(result);
   	  		}
   	  	});
-	}
+	},
 
+
+	getOrderID: function(cb){
+        var queryString = "select * from invoice order by id desc limit 1";
+
+        mysqlConnection.query(queryString, function(err, data){
+            if(err){
+                throw err;
+            }
+            else{
+                cb(null, data);
+            }
+        });
+    },
+    updateInventory: function(item_name, order_qty, cb){
+        console.log("UPDATE ENTERED");
+        console.log("****"+ order_qty, item_name + "****");
+            if(typeof order_qty != "number"){
+                  console.log(order_qty);
+                  order_qty = parseInt(order_qty);
+              }
+        var queryString = "update inventory "+
+                          "set current = current + ? "+
+                            "where item_name = ?";
+              //   if(typeof order_qty != "number"){
+              //     console.log(order_qty);
+              //     order_qty = parseInt(order_qty);
+              // }
+            mysqlConnection.query(queryString, [order_qty, item_name], function(err, result){
+                if(err){
+                    throw err;
+                }
+                else{
+                    console.log(result);
+                }
+            });
+    },
+    updateInvoice: function(orderID, cb){
+        var queryString = "update invoice "+
+                          "set receieved = 1 "+
+                          "where id = ?";
+          mysqlConnection.query(orderID, function(err, result){
+              if(err){
+                  throw err;
+              }
+              else{
+                  console.log("Invoice updated.");
+              }
+          });
+      }
 
 }
 

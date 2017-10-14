@@ -46,9 +46,20 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
     if (err) throw err;
 });
+var orderID = "";
 
 app.get("/scanInventory", function(req, res) {
    var createList = "";
+   
+
+orm.getOrderID(function(err, data){
+
+    for(var i = 0; i < data.length; i++){
+    orderID = data[i].id;
+    console.log(orderID+"HERE IS THE ID");
+    }
+});
+
 orm.checkInventory(function(err, data){
 
     if(err){
@@ -85,7 +96,7 @@ orm.checkInventory(function(err, data){
                 pass: "Tyronesmiley1"
             });
 
-            ftp.put("./testWrite", "/bartapOrders.txt", function(hadError){
+            ftp.put("./testWrite", "/bartapOrdersInbound.txt", function(hadError){
 
                 if(hadError){
                     throw hadError;
@@ -98,6 +109,72 @@ orm.checkInventory(function(err, data){
         }
     });
     }
+});
+
+});
+
+app.get("/importInventory", function(req, res) {
+    var ftp = new JSFTP({
+    host: "ftp.drivehq.com",
+    port: 21,
+    user: "tyronesmiley",
+    pass: "Tyronesmiley1"
+});
+
+
+
+var stream = "";
+ftp.get("/distributorExport.txt", function(err, socket){
+    if (err){
+        console.log(err);
+    }
+
+
+    socket.on("data", function(d){
+        stream += d.toString();
+
+    });
+    socket.on("close", function(hadErr){
+        if(hadErr){
+        console.log("There was an error retrieving the remote file.");
+        }
+
+        var lines = stream.split(":");
+        
+
+        for (var i=0; i<lines.length; i++){
+
+            if(lines[i].trim()){
+            //For each line in the file, convert to an object    
+            var cols = lines[i].split(',');
+
+            // orm.addOrder(cols[0], cols[1], cols[2], function(err, data){
+            //     if (err){
+            //         console.log(err + "YOOOO");
+            //     }
+            // });
+
+            orm.updateInventory(cols[1], cols[2], function(err, data){
+                if(err){
+                    throw err;
+                }
+                else{
+                    console.log("Inventory updated sucessfully.");
+                }
+            });
+
+            // orm.updateInvoice(orderID, function(err, data){
+            //     console.log("Invoice updated successfully");
+            // });
+
+
+
+            }
+        }
+    });
+    
+
+    socket.resume();
 });
 
 });

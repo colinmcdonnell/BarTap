@@ -114,3 +114,7 @@ VALUES
 ('mount gay',14, 'rum', 700,700,200),
 ('brugal',15, 'rum', 700, 700,200),
 ('meyers',16, 'rum', 700,700, 200);
+
+
+insert into invoice  (sent, received)
+values (TRUE, FALSE)

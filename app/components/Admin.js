@@ -19,6 +19,8 @@ export default class Admin extends Component {
 			result: false,
 			toggle: false,
 			chart: false,
+			scan: false,
+			imported : false,
 		}
 		if(this.props.location.state == null){
 			browserHistory.push("/");
@@ -28,9 +30,13 @@ export default class Admin extends Component {
 		this.getInventory = this.getInventory.bind(this);
 		this.genChart = this.genChart.bind(this);
 		this.scanInventory = this.scanInventory.bind(this);
-
+		this.importInventory = this.importInventory.bind(this);
 	}
 	getInventory(){
+		this.setState({chart: false});
+		this.setState({scan: false});
+		this.setState({imported: false});
+
 		if(this.state.result === true){
 			this.setState({data: [],
 				result: false});
@@ -53,7 +59,11 @@ export default class Admin extends Component {
 	}
 
 	genChart(){
-		console.log(this.state.chart);
+		this.setState({data: [],
+				result: false});
+		this.setState({scan: false});
+		this.setState({imported: false});
+
 		if(this.state.chart === false){
 			axios.get('/sales')
   			.then(function (response) {
@@ -119,43 +129,92 @@ export default class Admin extends Component {
 	}
 
 	scanInventory(){
-		console.log("Scan Clicked");
+		this.setState({data: [],
+				result: false});
+		this.setState({chart: false});
+		this.setState({scan: true});
+		this.setState({imported: false});
 		axios.get("/scanInventory").then(function (response) {
     			console.log(response);
+
   		})
   		.catch(function (error) {
     		console.log(error);
   		});
 			
 	}
-
+	importInventory(){
+		this.setState({scan: false});
+		this.setState({data: [],
+				result: false});
+		this.setState({chart: false});
+		this.setState({imported: true});
+		axios.get("/importInventory").then(function (response) {
+    			console.log(response);
+  		})
+  		.catch(function (error) {
+    		console.log(error);
+  		});
+	}
 
 	render(){
 		let data = this.state.result;
 		let inventoryData = "";
+		let scanCheck = this.state.scan;
+		let scanMessage ="";
+		let importCheck = this.state.imported;
+		let importMessage ="";
 		if(data){
 			inventoryData = <Table data={this.state.data} />
 		}
+
+		if(scanCheck){
+			scanMessage = "Inventory Scanned!";
+		} else {
+			scanMessage = "";
+		}
+		if(importCheck){
+			importMessage = "Inventory Imported!";
+		} else {
+			importMessage = "";
+		}
+
+
 		
 		return(
 			<div>
-			<h1>Admin Page</h1>
-			<button id="logout" className="btn-default"  onClick={this.logout}>Logout</button>
-			<div><br/></div>
-			<User name={this.state.name} image={this.state.image} />
-			<div><br/></div>
-			<button className="btn-default" onClick={this.getInventory}>View Inventory</button>
-			<span> </span>
-			<button className="btn-default" onClick={this.genChart}>Generate Chart</button>
-			<span> </span>
-			<button className="btn-default" onClick={this.scanInventory}>Scan Inventory</button>
-			
-			{inventoryData}
+			<div className="row">
+                <div className="col-md-12">
+                    <h1 id="navBar"> admin bartap </h1>
+                </div>
+                <div className="row">        
+                    <div className="col-md-4">
+                        <div id="btn">
+                            <img id="photo" src={this.state.image}/>
+                            
+                            <h4 id="userName">{this.state.name}</h4>
+                        </div>
+                    </div>
+                
+                    
+                </div>
+            </div> 
+            <div className="row">
+                <div className="col-md-4">
+                    <button className="btn" onClick={this.getInventory}>View Inventory</button>
+                    <button className="btn" onClick={this.genChart}>Generate Chart</button>
+					<button className="btn" onClick={this.scanInventory}>Scan Inventory</button>
+					<button className="btn" onClick={this.importInventory}>import Inventory</button>
+                    <button id="logout" className="btn3"  onClick={this.logout}>Logout</button>
+                </div>
+                <div className ="col-md-6">
+                {inventoryData}
+                <h2>{scanMessage}</h2>
+                <h2>{importMessage}</h2>
+                <div id="container"></div>
+                </div>
 
-			<div id="container"></div>
-
-
-
+            </div>
 			</div>
 			)
 	}

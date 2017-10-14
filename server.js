@@ -35,7 +35,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "Cricket47",
+  password: "",
   database: "bev_db"
 
 });
@@ -68,9 +68,18 @@ app.get("/getInventoryData/", function(req, res) {
     })
 });
 
+
+
 app.get("/sales", function(req, res) {
     var dbQuery = "select sum(count) as count, item_name from sales group by item_name; "
     connection.query(dbQuery, function(err, result) {
+        res.json(result);
+    })
+});
+
+app.get("/bartender/:user?", function(req, res) {
+    var dbQuery = "SELECT count*price_per_unit*units FROM sales WHERE user = ? "
+    connection.query(dbQuery,[req.params.user], function(err, result) {
         res.json(result);
     })
 });
@@ -84,6 +93,7 @@ app.post("/updateSales", function(req, res) {
     var dbQuery = "INSERT INTO sales (item_name,count,price_per_unit,units,user ) VALUES (?,?,?,?,?)"
     connection.query(dbQuery, [req.body.item_name, req.body.count,req.body.price,req.body.unit,req.body.name], function(err, result) {
         res.json(result);
+        console.log(result);
     })
 });
 

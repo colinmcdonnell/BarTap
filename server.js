@@ -38,7 +38,9 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
+
   password: "password",
+
   database: "bev_db"
 
 });
@@ -203,19 +205,32 @@ app.get("/getInventoryData/", function(req, res) {
     })
 });
 
+
+
 app.get("/sales", function(req, res) {
-    var dbQuery = "select sum(units_sold)as units_sold, item_name from sales group by item_name; "
+    var dbQuery = "select sum(count) as count, item_name from sales group by item_name; "
     connection.query(dbQuery, function(err, result) {
         res.json(result);
     })
 });
 
-app.post("/updateSales", function(req, res) {
-    console.log("drink_name" +  req.body.item_name);
-    console.log("drink_count" +  req.body.count);
-    var dbQuery = "INSERT INTO sales (units_sold, item_name) VALUES (?,?)"
-    connection.query(dbQuery, [req.body.count, req.body.item_name], function(err, result) {
+app.get("/bartender/:user?", function(req, res) {
+    var dbQuery = "SELECT count*price_per_unit*units FROM sales WHERE user = ? "
+    connection.query(dbQuery,[req.params.user], function(err, result) {
         res.json(result);
+    })
+});
+
+app.post("/updateSales", function(req, res) {
+    console.log("drink_name " +  req.body.item_name);
+    console.log("drink_count " +  req.body.count);
+    console.log("drink price " + req.body.price);
+    console.log("drink unit " + req.body.unit);
+    console.log("name " + req.body.name);
+    var dbQuery = "INSERT INTO sales (item_name,count,price_per_unit,units,user ) VALUES (?,?,?,?,?)"
+    connection.query(dbQuery, [req.body.item_name, req.body.count,req.body.price,req.body.unit,req.body.name], function(err, result) {
+        res.json(result);
+        console.log(result);
     })
 });
 
@@ -240,7 +255,7 @@ app.post("/updateInventory", function(req, res){
   let item_name = req.body.item_name;
   let count = req.body.count;
   let units = req.body.unit;
-console.log("units: "+ units);
+  console.log("units: "+ units);
 
   let decVal = count * units;
   // console.log("decval: "+ decVal);

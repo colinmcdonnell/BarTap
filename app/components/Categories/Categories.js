@@ -35,11 +35,14 @@ export default class Categories extends Component {
 			count: [],
 			drink: [],
 			units: [],
+			name: this.props.name
 		};
 		
 		this.handleClick = this.handleClick.bind(this);
 		this.handleOrderClick = this.handleOrderClick.bind(this);
 		this.clearBtn = this.clearBtn.bind(this);
+
+		// console.log(this.props.name);
 		
 	}
 
@@ -122,7 +125,7 @@ export default class Categories extends Component {
 		let ordersummary;
 		if(this.state.results){
 
-			ordersummary = <Summary clear={this.clearBtn} drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice} unit={this.state.units}/>
+			ordersummary = <Summary clear={this.clearBtn} drink={this.state.drink} count={this.state.count} price={this.state.drinkPrice} unit={this.state.units} name={this.props.name}/>
 
 		}
 

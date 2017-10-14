@@ -29,8 +29,13 @@ export default class Admin extends Component {
 		this.logout = this.logout.bind(this);
 		this.getInventory = this.getInventory.bind(this);
 		this.genChart = this.genChart.bind(this);
+
 		this.scanInventory = this.scanInventory.bind(this);
 		this.importInventory = this.importInventory.bind(this);
+
+		this.bartenderChart = this.bartenderChart.bind(this);
+		
+
 	}
 	getInventory(){
 		this.setState({chart: false});
@@ -58,6 +63,85 @@ export default class Admin extends Component {
 		browserHistory.push("/");
 	}
 
+	bartenderChart(){
+		var userarray = ["Colin","AK"];
+		var user1 = 0;
+		var user2 = 0;
+		var submit = [];
+		var count = 0;
+
+		for(var i=0;i<userarray.length;i++){
+			axios.get('/bartender/'+userarray[i]).then(function(response){
+				console.log(response);
+				
+				for(var j=0;j<response.data.length;j++){
+					count++;
+					if(count>1){
+						user2 = user2 + response.data[j]['count*price_per_unit*units '];
+					}
+					else{
+						user1 = user1 + response.data[j]['count*price_per_unit*units '];
+					}
+					
+				}
+				console.log(user1);
+				console.log(user2);
+
+				var data = [{
+				  type: 'bar',
+				  color:['red','blue'],
+				  x: [user1, user2],
+				  y: [userarray[1],userarray[0]],
+				  orientation: 'h'
+				}];
+
+				var layout = {
+				  title: 'Sales by Bartender in $',
+					};
+
+
+				Plotly.newPlot('bartender', data, layout);
+
+				// Highcharts.chart('bartender', {
+			 //        chart: {
+			 //            type: 'bar'
+			 //        },
+			 //        title: {
+			 //            text: 'Sales by Bartender'
+			 //        },
+			 //        xAxis: {
+			 //            categories: ['Bartenders']
+			 //        },
+			 //        yAxis: {
+			 //            title: {
+			 //                text: 'Sales in Dollars'
+			 //            }
+			 //        },
+			 //        series: [{
+			 //            name: userarray[0],
+			 //            data: user1
+			 //        }, {
+			 //            name: userarray[1],
+			 //            data: user2
+			 //        }]
+			 //    });
+		
+			});
+		}
+		
+		
+		
+		
+		
+
+		// Plotly.newPlot('bartender', data);
+
+
+		
+		
+
+	}
+
 	genChart(){
 		this.setState({data: [],
 				result: false});
@@ -75,7 +159,10 @@ export default class Admin extends Component {
 			for (var i = 0; i < response.data.length; i++) {
 				let tempArr = [];
 				let item_name = response.data[i].item_name;
-				let units_sold = response.data[i].units_sold;
+				let units_sold = response.data[i].count;
+				let price = response.data[i].price;
+				let units = response.data[i].price;
+				let user = response.data[i].user;
 				tempArr.push(item_name);
 				tempArr.push(units_sold);
 				console.log("temparr : "+ tempArr);
@@ -115,6 +202,13 @@ export default class Admin extends Component {
 					data: salesData
 				}]
 			});	
+
+
+
+
+
+
+
 })
   			.catch(function (error) {
     			console.log(error);
@@ -168,6 +262,7 @@ export default class Admin extends Component {
 			inventoryData = <Table data={this.state.data} />
 		}
 
+
 		if(scanCheck){
 			scanMessage = "Inventory Scanned!";
 		} else {
@@ -178,6 +273,10 @@ export default class Admin extends Component {
 		} else {
 			importMessage = "";
 		}
+
+		
+		
+
 
 
 		
